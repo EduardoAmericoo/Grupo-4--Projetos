@@ -60,6 +60,8 @@ def choice():
             condominio['nomeGestor'] = str(input('Seu nome: '))
             condominio['cargoGestor'] = str(input('Cargo/função: '))
             condominio['emailGestor'] = str(input('Por último, seu e-mail:'))
+
+            condCadastrados.append(condominio.copy())
             
             print(f'Solicitação recebida com sucesso! Obrigado pela confiança, {condominio['nomeGestor']}!')
             print('O código do seu condomínio será enviado para seu e-mail dentro de 1 semana!')
@@ -88,6 +90,10 @@ def main():
     os.system('cls')
     menu()
     choice()
+
+def saida():
+    os.system('cls')
+    exit()
 
 if __name__ == '__main__':
     main()
