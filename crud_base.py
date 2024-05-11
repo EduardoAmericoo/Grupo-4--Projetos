@@ -58,6 +58,7 @@ def choise():
             
             if opcao in "M":
                 main()
+        
         case 3: 
             # Buscar clientes
             print("-"*20)
