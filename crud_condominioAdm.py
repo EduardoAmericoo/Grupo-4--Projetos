@@ -18,13 +18,32 @@ def choice():
     opcao = int(input('Digite a opção escolhida -> '))
 
     match (opcao):
-        
-        case 1:
-            print('Cadastrar um condomínio')
-            #PEDIR ENDEREÇO E FORNECER UM CÓDIGO NO FINAL
 
-            opcao = str(input('Digite M para voltar ao menu:'))
-            
+        case 1:
+            while True:
+                print('=-'*20)
+                print('Cadastrar um condomínio')
+                print('=-'*20)
+
+                print('Insira as informações requisitadas abaixo:')
+                condominio['estado'] = str(input('Estado: '))
+                condominio['municipio'] = str(input('Município: '))
+                condominio['bairro'] = str(input('Bairro: '))
+                condominio['rua'] = str(input('Rua: '))
+                condominio['numero'] = str(input('Número: '))
+
+                cadastros.append(condominio.copy())
+
+                #FORNECER CÓDIGO
+
+                opcao = str(input('Deseja cadastrar mais um condomínio? (S/N) -> ')).upper
+                while opcao not in ('SN'):
+                    print('Opção inválida! Tente novamente.')
+                    opcao = str(input('Deseja cadastrar mais um condomínio? (S/N) -> ')).upper
+
+                if opcao in 'N':
+                    main()
+                    break
 
         case 2:
             print('Exibir/buscar condomínios cadastrados')
@@ -33,7 +52,7 @@ def choice():
             #SE SIM, FORNECER A FERRAMENTA DE BUSCAR
 
             opcao = str(input('Digite M para voltar ao menu:'))
-
+        
         case 3:
             print('Atualizar dados de um condomínio')
             #FERRAMENTA DE BUSCA, E LOGO DEPOIS PERGUNTAR O QUE DESEJA MUDAR
@@ -45,7 +64,7 @@ def choice():
             #FERRAMENTA DE BUSCA E MENSAGEM DE CONFIRMAÇÃO PARA APAGAR
 
             opcao = str(input('Digite M para voltar ao menu:'))
-            
+
 
         case 5:
             print('Saindo...')
