@@ -1,6 +1,5 @@
-import os
-
 # Implementar módulos e tratamento de erros.
+import os
 
 usuario = dict()
 cadastros = list() 
