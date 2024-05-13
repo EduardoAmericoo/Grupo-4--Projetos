@@ -1,4 +1,5 @@
 import os
+from random import randint
 
 condominio = dict(list)
 condsCadastrados = list()
@@ -47,7 +48,18 @@ def choice():
 
             condsCadastrados.append(condominio.copy())
 
-            #ENTREGAR ID
+            '''opcao 1
+            codigo = randint(1000, 9999)
+            print(f'O código do seu condomínio é {codigo})
+            print('Guarde e envie para os moradores, pois é com ele que poderão fazer login.')'''
+
+            '''opcao 2
+            with open(FILENAME, mode='r') as file:
+            reader = csv.DictReader(file)
+            ids = [int(row['ID']) for row in reader]
+            return max(ids) + 1 if ids else 1
+            except FileNotFoundError:
+            return 1'''
         case 0:
             print('Saindo...')
         case __:
