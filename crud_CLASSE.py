@@ -26,6 +26,20 @@ def choice():
             print('CADASTRAR NA PLATAFORMA E OBTER ID')
             print('-='*15)
 
+            print('Selecione o que você deseja cadatrar)
+            print('1 - Quero cadastrar meu condomínio (gestor)')
+            print('2 - Quero me cadastrar (morador)')
+            print('3 - Voltar ao menu')
+
+            opcaoCadastro = int(input('Digite a opção escolhida -> )
+
+            match (opcaoCadastro):
+                case 1:
+                    print('-='*25)
+                    print('CADASTRAR CONDOMÍNIO E GESTOR')
+                    print('-='*25)
+                    
+                                 
             classe = str(input('Informe
 
         case 3:
