@@ -26,7 +26,7 @@ def choice():
             print('CADASTRAR NA PLATAFORMA E OBTER ID')
             print('-='*15)
 
-            
+            classe = str(input('Informe
 
         case 3:
             print('-='*2)
