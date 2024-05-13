@@ -5,8 +5,8 @@ def menu():
     print('IDENTIFICAÇÃO')
     print('-='*7)
 
-    print('1 - Sou morador')
-    print('2 - Sou síndico/gestor')
+    print('1 - Fazer login')
+    print('2 - Novo na ferramenta (obter ID)')
     print('3 - Sou DEV')
 
 def choice():
@@ -15,13 +15,18 @@ def choice():
     match (opcao):
         case 1:
             print('-='*4)
-            print('MORADOR')
+            print('LOGIN - MORADOR/GESTOR')
             print('-='*4)
+
+            id = str(input('Insira seu ID -> ')
+            #PUXAR FUNÇÃO DA PAGINA INICIAL MORADOR/GESTOR
         
         case 2:
             print('-='*15)
-            print('SÍNDICO, GESTOR, ETC')
+            print('CADASTRAR NA PLATAFORMA E OBTER ID')
             print('-='*15)
+
+            
 
         case 3:
             print('-='*2)
