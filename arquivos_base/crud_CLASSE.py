@@ -10,7 +10,8 @@ def menu():
     print('-='*7)
 
     print('1 - Fazer login')
-    print('2 - Obter ID (novo na ferramenta)')
+    print('2 - Fazer cadastro como gestor')
+    print('3 - Fazer cadastro de condomínio')
     print('0 - Sair')
 
 def choice():
@@ -28,16 +29,11 @@ def choice():
             #PUXAR FUNÇÃO DA PAGINA INICIAL MORADOR/GESTOR
         
         case 2:
+        case 3:
             print('-='*15)
-            print('CADASTRAR NA PLATAFORMA E OBTER ID')
+            print('CADASTRO - CONDOMÍNIO')
             print('Apenas gestores e síndicos')
             print('-='*15)
-                     
-            print('Insira suas informações requisitadas abaixo:')
-            condominio['nomeGestor'] = str(input('Nome: '))
-            condominio['cargoGestor'] = str(input('Cargo/função: '))
-            condominio['emailGestor'] = str(input('E-mail: '))
-            condominio['cpfGestor] = str(input('CPF: '))
                      
             print('Insira as informações requisitadas abaixo, acerca do condomínio:')
             condominio['estado'] = str(input('Estado: '))
