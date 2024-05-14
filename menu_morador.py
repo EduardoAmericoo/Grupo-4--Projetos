@@ -1,4 +1,7 @@
+import os
+
 def menu_morador():
+    os.system('cls')
     print("="*21)
     print(" Menu Morador ")
     print("="*21)

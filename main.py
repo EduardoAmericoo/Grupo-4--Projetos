@@ -11,8 +11,8 @@ def login():
     print(" LOGIN NO SISTEMA ")
     
     while True:
-        print("="*21) 
-        cpf = str(input("CPF: ")) 
+        print("="*21)
+        cpf = str(input("CPF: "))
         senha = str(input("Senha: "))
         print("="*21)
         
@@ -29,17 +29,11 @@ def login():
         
         if id_user == "0":
             # Menu morador
-            menu_morador.menu_morador()
-            
-            opc = str(input("Digite a opção: "))
-            menu_morador.opcoes_morador(opc)     
+            menu_morador.opcoes_morador()     
         
         elif id_user == "1":    
             # Menu ADM
-            menu_adm.menu_adm()
-            
-            opc = str(input("Digite a opção: "))
-            menu_adm.opcoes_adm(opc)      
+            menu_adm.opcoes_adm()      
         else:
             main()
 
