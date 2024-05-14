@@ -3,7 +3,7 @@ import os
 import models.usuarios_model as usuario
 import menu_adm
 import menu_morador
-    
+
     
 def login():  
     # Login com CPF e Senha

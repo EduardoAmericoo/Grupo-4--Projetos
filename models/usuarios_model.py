@@ -10,7 +10,7 @@ def buscarUsuario():
         
         for row in reader:
             usuarios.append(row.copy())
-    
+            
     return usuarios
 
 def autenticar_usuario(cpf, senha):
