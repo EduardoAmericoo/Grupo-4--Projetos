@@ -46,7 +46,11 @@ def choiceGAdm():
             print('REMOVER O SEU CONDOMÍNIO CADASTRADO')
             print('-='*20)
 
-            confirmacao = str(input(f'Deseja excluir do cadastro o condomínio {condominio}? (S/N)')
+            confirmacao = str(input(f'Deseja excluir do cadastro o condomínio {condominio}? (S/N)').upper
+            if confirmacao == 'S':
+                del condCadastrado
+            elif confirmacao == 'N':
+                
             
         case 0:
             #CHAMAR O MENU ANTERIOR
