@@ -12,7 +12,7 @@ def menu():
     print("1 - Cadastrar cliente")    
     print("2 - Exibir clientes")    
     print("3 - Buscar clientes")    
-    print("4 - Atualizar clientes")    
+    print("4 - Atualizar clientes")
     print("5 - Excluir clientes")    
     print("6 - Sair")
 

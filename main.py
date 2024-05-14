@@ -1,28 +1,8 @@
 # Implementar módulos e tratamento de erros.
 import os
 import models.usuarios_model as usuario
-
-def menu_morador():
-    print("="*21)
-    print(" Menu Morador ")
-    print("="*21)
-    
-    print("1. Usuário")
-    print("2. Reserva de áreas comuns")
-    print("3. Comunicação")
-    print("4. Sair")
-        
-def menu_adm():
-    print("="*21)
-    print(" Menu ADM ")
-    print("="*21)
-    
-    print("1. Gerenciar Usuários")
-    print("2. Gerenciar condomínios")
-    print("3. Gerenciar áreas comuns")
-    print("4. Gerenciar reservas")
-    print("5. Comunicação")
-    print("6. Sair")
+import menu_adm
+import menu_morador
     
     
 def login():  
@@ -49,22 +29,17 @@ def login():
         
         if id_user == "0":
             # Menu morador
-            menu_morador()
+            menu_morador.menu_morador()
+            
+            opc = str(input("Digite a opção: "))
+            menu_morador.opcoes_morador(opc)     
         
         elif id_user == "1":    
             # Menu ADM
-            menu_adm()
+            menu_adm.menu_adm()
             
             opc = str(input("Digite a opção: "))
-            while opc not in ("123456"):
-                print("Opção inválida, Tente novamente")
-                opc = str(input("Digite a opção: "))   
-            
-            match(opc):
-                case "1": 
-                    print(opc)
-                case __:
-                    print(opc, "Errou")            
+            menu_adm.opcoes_adm(opc)      
         else:
             main()
 
