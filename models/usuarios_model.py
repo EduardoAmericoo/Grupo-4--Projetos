@@ -1,6 +1,6 @@
 import csv
 
-usuarios = list() 
+usuarios = list()
 
 def obter_proximo_id():
     try:
@@ -16,10 +16,10 @@ def cadastrarUsuario(id, tipo_user, nome, cpf, senha, email, telefone, apartamen
     # escrever em arquivos csv
     with open('database/usuarios.csv', 'a', newline='') as arquivo:
         # cria objeto para escrever
-        w = csv.writer(arquivo)
+        escrever = csv.writer(arquivo)
         
         # escreve no arquivo linha a linha
-        w.writerow((id, tipo_user, nome, cpf, senha, email, telefone, apartamento))
+        escrever.writerow((id, tipo_user, nome, cpf, senha, email, telefone, apartamento))
         
         usuario_cadastrado = True
     

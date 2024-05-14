@@ -8,12 +8,11 @@ def menu_adm():
     print(" Menu ADM ")
     print("="*21)
     
-    print("1. Gerenciar Usuários") # CRUD USUÁRIOS
+    print("1. Gerenciar usuários") # CRUD USUÁRIOS
     print("2. Gerenciar condomínios") # CRUD Condomínios
-    print("3. Gerenciar áreas comuns") # CRUD Áreas comuns 
-    print("4. Gerenciar reservas") # CRUD Reservas
-    print("5. Comunicação") # CRUD Comunicação
-    print("6. Sair") 
+    print("3. Gerenciar reservas") # CRUD Reservas
+    print("4. Comunicação") # CRUD Comunicação
+    print("5. Sair") 
     
 def gerenciarUsuario():
     os.system('cls')
@@ -26,18 +25,54 @@ def gerenciarUsuario():
     print("3. Atualizar usuário") # CRUD Áreas comuns 
     print("4. Deletar usuário") # CRUD Reservas
     print("5. Sair")
+
+def gerenciarCondominio():
+    os.system('cls')
+    print("="*21)
+    print(" Gerenciar Condomínio ")
+    print("="*21)
     
+    print("1. Cadastrar condomínio") # CRUD USUÁRIOS
+    print("2. Listar condomínio") # CRUD Condomínios
+    print("3. Atualizar condomínio") # CRUD Áreas comuns 
+    print("4. Deletar condomínio") # CRUD Reservas
+    print("5. Sair")
     
+def gerenciarReservas():
+    os.system('cls')
+    print("="*21)
+    print(" Gerenciar Usuários ")
+    print("="*21)
+    
+    print("1. Cadastrar usuário") # CRUD USUÁRIOS
+    print("2. Listar usuário") # CRUD Condomínios
+    print("3. Atualizar usuário") # CRUD Áreas comuns 
+    print("4. Deletar usuário") # CRUD Reservas
+    print("5. Sair")
+    
+def comunicacao():
+    os.system('cls')
+    print("="*21)
+    print(" Gerenciar Usuários ")
+    print("="*21)
+    
+    print("1. Cadastrar usuário") # CRUD USUÁRIOS
+    print("2. Listar usuário") # CRUD Condomínios
+    print("3. Atualizar usuário") # CRUD Áreas comuns 
+    print("4. Deletar usuário") # CRUD Reservas
+    print("5. Sair")
+
 def opcoes_adm():
     menu_adm()
     opc = str(input("Digite a opção: "))
-
     match(opc):
-        case "1": 
-            # Gerenciar Usuários
+        
+        
+        case "1": # Gerenciar Usuários 
             gerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
             
+                
             match(opcao):
                 case 1:
                     # cadastrar usuario
@@ -62,19 +97,16 @@ def opcoes_adm():
                     time.sleep(2)
                     opcoes_adm()
                 
-        case "2":
-            # Gerenciar condomínios 
+        case "2": # Gerenciar condomínios 
+            
             print(opc)
-        case "3": 
-            # Gerenciar áreas comuns
+        case "3": # Gerenciar reservas 
+            
             print(opc)
-        case "4": 
-            # Gerenciar reservas
+        case "4": # Comunicação 
+            
             print(opc)
-        case "5": 
-            # Comunicação
-            print(opc)
-        case "6": 
+        case "5":  
             print("Saindo...")
         case __:
             print(opc, "Errou")
