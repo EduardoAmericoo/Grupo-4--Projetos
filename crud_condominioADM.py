@@ -1,8 +1,5 @@
 import os
 
-condominio = dict(list())
-condCadastrados = list()
-
 def menuGAdm():
     print('='*35)
     print('GERENCIAMENTO DE CONDOMÍNIO (ADM)')
@@ -22,8 +19,8 @@ def choiceGAdm():
             print('GERENCIAR CONDOMÍNIO')
             print('-='*20)
 
-            print('Escolha o que deseja fazer a seguir:')
-            print('1 - Cadastrar um morador')
+            print('Opções de acesso:')
+            print('1 - Acessar o cadastro de moradores')
             print('2 - Acessar chat de comunicação')
             print('3 - Acessar página de reserva de áreas comuns')
             print('0 - Voltar ao menu de ações')
@@ -39,6 +36,7 @@ def choiceGAdm():
                     #PAGINA DE AREAS COMUNS
                 case 0:
                     print('Voltando...')
+                    #PUXAR MENU ANTERIOR
                 case __:
                     print('Opção inválida! Tente novamente.')
                     mainGAdm()
@@ -48,6 +46,8 @@ def choiceGAdm():
             print('REMOVER O SEU CONDOMÍNIO CADASTRADO')
             print('-='*20)
 
+            confirmacao = str(input(f'Deseja excluir do cadastro o condomínio {condominio}? (S/N)')
+            
         case 0:
             #CHAMAR O MENU ANTERIOR
 
