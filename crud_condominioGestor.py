@@ -37,8 +37,12 @@ def choiceGAdm():
                     #PAGINA DE CHATS
                 case 3:
                     #PAGINA DE AREAS COMUNS
+                case 0:
+                    print('Voltando...')
                 case __:
-
+                    print('Opção inválida! Tente novamente.')
+                    mainGAdm()
+                
         case 2:
             print('-='*20)
             print('REMOVER O SEU CONDOMÍNIO CADASTRADO')
