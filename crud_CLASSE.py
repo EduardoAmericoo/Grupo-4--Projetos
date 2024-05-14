@@ -24,6 +24,7 @@ def choice():
 
             id = str(input('Insira o ID do condomínio -> ')
             classe = str(input('Insira o seu CPF -> ')
+            #MENSAGEM DE BOAS VINDAS
             #PUXAR FUNÇÃO DA PAGINA INICIAL MORADOR/GESTOR
         
         case 2:
