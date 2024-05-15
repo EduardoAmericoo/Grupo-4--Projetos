@@ -43,6 +43,9 @@ def opcoes_adm():
                     senha = str(input("Digite seu senha: "))
                     email = str(input("Digite seu email: "))
                     tipo_user = str(input("Tipo de usuario: [0 - Morador / 1 - Adm] "))
+                    while tipo_user not in "01":
+                        print("Opção inválida!")
+                        tipo_user = str(input("Tipo de usuario: [0 - Morador / 1 - Adm] "))
                     telefone = str(input("Digite seu telefone: "))
                     apartamento = str(input("Digite seu apartamento: "))
                     
@@ -51,11 +54,12 @@ def opcoes_adm():
                     if usuario_cadastrado:
                         print(f"Usuário {nome.upper()} cadastrado com sucesso!")
                     
+                    time.sleep(2)
                     opcoes_adm()
                     
             # listar usuário
             elif opcao == 2:
-                nome = str(input("Digite seu nome: "))
+                nome = str(input("Digite o usuário: "))
                 result = usuario.listarUsuario(nome)
 
                 print(result)

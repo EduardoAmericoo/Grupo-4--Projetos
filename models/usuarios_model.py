@@ -41,11 +41,11 @@ def listarUsuario(nome):
         reader = csv.reader(arquivo)
         result = []
         for row in reader:
-            if row['nome'] in nome:
+            if nome.upper() in row[2].upper():
                 result.append(row)
         
         return result
-    
+
 def atualizarUsuario():
     print("Atualizar")
     
