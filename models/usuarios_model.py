@@ -36,7 +36,16 @@ def buscarUsuario():
             
     return usuarios
 
-
+def listarUsuario(nome):
+    with open('database/usuarios.csv', 'r', newline='') as arquivo:
+        reader = csv.reader(arquivo)
+        result = []
+        for row in reader:
+            if row['nome'] in nome:
+                result.append(row)
+        
+        return result
+    
 def atualizarUsuario():
     print("Atualizar")
     

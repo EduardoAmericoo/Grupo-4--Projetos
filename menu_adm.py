@@ -26,56 +26,18 @@ def gerenciarUsuario():
     print("4. Deletar usuário") # CRUD Reservas
     print("5. Sair")
 
-def gerenciarCondominio():
-    os.system('cls')
-    print("="*21)
-    print(" Gerenciar Condomínio ")
-    print("="*21)
-    
-    print("1. Cadastrar condomínio") # CRUD USUÁRIOS
-    print("2. Listar condomínio") # CRUD Condomínios
-    print("3. Atualizar condomínio") # CRUD Áreas comuns 
-    print("4. Deletar condomínio") # CRUD Reservas
-    print("5. Sair")
-    
-def gerenciarReservas():
-    os.system('cls')
-    print("="*21)
-    print(" Gerenciar Usuários ")
-    print("="*21)
-    
-    print("1. Cadastrar usuário") # CRUD USUÁRIOS
-    print("2. Listar usuário") # CRUD Condomínios
-    print("3. Atualizar usuário") # CRUD Áreas comuns 
-    print("4. Deletar usuário") # CRUD Reservas
-    print("5. Sair")
-    
-def comunicacao():
-    os.system('cls')
-    print("="*21)
-    print(" Gerenciar Usuários ")
-    print("="*21)
-    
-    print("1. Cadastrar usuário") # CRUD USUÁRIOS
-    print("2. Listar usuário") # CRUD Condomínios
-    print("3. Atualizar usuário") # CRUD Áreas comuns 
-    print("4. Deletar usuário") # CRUD Reservas
-    print("5. Sair")
-
 def opcoes_adm():
     menu_adm()
     opc = str(input("Digite a opção: "))
     match(opc):
         
-        
-        case "1": # Gerenciar Usuários 
+        # Gerenciar Usuários 
+        case "1":  
             gerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
             
-                
-            match(opcao):
-                case 1:
-                    # cadastrar usuario
+            # cadastrar usuário
+            if opcao == 1:
                     nome = str(input("Digite seu nome: "))
                     cpf = str(input("Digite seu cpf: "))
                     senha = str(input("Digite seu senha: "))
@@ -90,12 +52,37 @@ def opcoes_adm():
                         print(f"Usuário {nome.upper()} cadastrado com sucesso!")
                     
                     opcoes_adm()
+                    
+            # listar usuário
+            elif opcao == 2:
+                nome = str(input("Digite seu nome: "))
+                result = usuario.listarUsuario(nome)
+
+                print(result)
+                    
+                # opcoes_adm()
+            
+            # atualizar usuário    
+            elif opcao == 3:
                 
-                case __:
-                    # listar usuario
-                    print("Opção inválida!")
-                    time.sleep(2)
-                    opcoes_adm()
+                opcoes_adm()
+            
+            # deletar usuário
+            elif opcao == 4: 
+                
+                opcoes_adm()
+            
+            # sair
+            elif opcao == 5:
+                
+                opcoes_adm()
+                
+            # opção incorreta 
+            else:
+                print("Opção inválida!")
+                time.sleep(2)
+                opcoes_adm()
+                
                 
         case "2": # Gerenciar condomínios 
             
@@ -109,6 +96,8 @@ def opcoes_adm():
         case "5":  
             print("Saindo...")
         case __:
-            print(opc, "Errou")
+            print("Opção inválida!")
+            time.sleep(2)
+            opcoes_adm()
     
     
