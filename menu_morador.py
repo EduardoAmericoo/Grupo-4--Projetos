@@ -11,5 +11,5 @@ def menu_morador():
     print("3. Comunicação")
     print("4. Sair")
 
-def opcoes_morador(opc):
+def opcoes_morador():
     print("Teste")

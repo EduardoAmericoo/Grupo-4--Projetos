@@ -1,8 +1,82 @@
 [
     {
-        'ADM'
+        "id": 1,
+        "is_adm": true,
+        "nome": "adm default",
+        "cpf": "70363713409",
+        "senha": "123",
+        "email": "terry@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "401"
+    },
+    {
+        "id": 2,
+        "is_adm": false,
+        "nome": "Igor Soares",
+        "cpf": "70464712401",
+        "senha": "123",
+        "email": "igor@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "301"
+    },
+    {
+        "id": 3,
+        "is_adm": true,
+        "nome": "Maju Germano",
+        "cpf": "122222",
+        "senha": "123",
+        "email": "maju@gmail.com",
+        "telefone": "123",
+        "apartamento": "2"
+    },
+    {
+        "id": 4,
+        "is_adm": false,
+        "nome": "Diego ",
+        "cpf": "2312312312",
+        "senha": "123",
+        "email": "diego@gmail.com",
+        "telefone": "123",
+        "apartamento": "202"
+    },
+    {
+        "id": 5,
+        "is_adm": true,
+        "nome": "Nogueira",
+        "cpf": "22222222222",
+        "senha": "123",
+        "email": "nogueira@gmail.com",
+        "telefone": "33333333333",
+        "apartamento": "222"
+    },
+    {
+        "id": 6,
+        "is_adm": true,
+        "nome": "Eduardo Am\u00e9rico",
+        "cpf": "22222222222",
+        "senha": "123",
+        "email": "eduardo@gmail.com",
+        "telefone": "22222222222",
+        "apartamento": "122"
+    },
+    {
+        "id": 7,
+        "is_adm": true,
+        "nome": "terry",
+        "cpf": "70363713408",
+        "senha": "123",
+        "email": "terry@gmail.com",
+        "telefone": "1323",
+        "apartamento": "1222"
+    },
+    {
+        "id": 8,
+        "is_adm": false,
+        "nome": "Terry",
+        "cpf": "11111111111",
+        "senha": "qweqw",
+        "email": "asdas",
+        "telefone": "dada",
+        "apartamento": "sad"
     }
 ]
-id,tipo_login,nome,cpf,senha,email,telefone,apartamento
-1, 1, "Terry Damasio", "654321", "123", "terry@gmail.com", "81989189090", 101
-2,1,Terry Damasio Santos ,70363712309,123,123,terry,321

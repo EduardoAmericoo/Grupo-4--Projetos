@@ -1,6 +1,10 @@
 import os
-import models.usuarios_model as usuario
 import time 
+import main
+import models.usuarios_model as usuario
+import models.reservas_model as reservas
+import models.condominio_model as condominio
+import models.comunicados_model as comunicados
 
 def menu_adm():
     os.system('cls')
@@ -20,10 +24,10 @@ def gerenciarUsuario():
     print(" Gerenciar Usuários ")
     print("="*21)
     
-    print("1. Cadastrar usuário") # CRUD USUÁRIOS
-    print("2. Listar usuário") # CRUD Condomínios
-    print("3. Atualizar usuário") # CRUD Áreas comuns 
-    print("4. Deletar usuário") # CRUD Reservas
+    print("1. Cadastrar usuário") 
+    print("2. Listar usuário") 
+    print("3. Atualizar usuário")  
+    print("4. Deletar usuário") 
     print("5. Sair")
 
 def opcoes_adm():
@@ -31,45 +35,105 @@ def opcoes_adm():
     opc = str(input("Digite a opção: "))
     match(opc):
         
-        # Gerenciar Usuários 
+        # GERENCIAR USUÁRIOS
         case "1":  
             gerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
             
             # cadastrar usuário
             if opcao == 1:
-                    nome = str(input("Digite seu nome: "))
+                nome = str(input("Digite seu nome: "))
+                cpf = str(input("Digite seu cpf: "))
+                while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
+                    if cpf == "": 
+                        print("Campo obrigatório!")
+                    elif len(cpf) != 11:
+                        print("Campo deve conter 11 caracteres.")
+                    elif not cpf.isdigit():
+                        print("O cpf deve conter apenas digitos numéricos.")
+                        
                     cpf = str(input("Digite seu cpf: "))
+                    
+                senha = str(input("Digite seu senha: "))
+                while senha == "":
+                    print("Campo obrigatório!")
                     senha = str(input("Digite seu senha: "))
-                    email = str(input("Digite seu email: "))
-                    tipo_user = str(input("Tipo de usuario: [0 - Morador / 1 - Adm] "))
-                    while tipo_user not in "01":
-                        print("Opção inválida!")
-                        tipo_user = str(input("Tipo de usuario: [0 - Morador / 1 - Adm] "))
-                    telefone = str(input("Digite seu telefone: "))
-                    apartamento = str(input("Digite seu apartamento: "))
                     
-                    usuario_cadastrado = usuario.cadastrarUsuario(usuario.obter_proximo_id(), tipo_user, nome, cpf, senha, email, telefone, apartamento)
+                is_adm = str(input("Usuário é adm: [S/N] ")).upper()
+                while is_adm not in "SN":
+                    print("Opção inválida!")
+                    is_adm = str(input("Usuário é adm: [S/N] ")).upper()
                     
-                    if usuario_cadastrado:
-                        print(f"Usuário {nome.upper()} cadastrado com sucesso!")
+                if is_adm == "S":
+                    is_adm = True
+                else:
+                    is_adm = False
                     
-                    time.sleep(2)
-                    opcoes_adm()
+                email = str(input("Digite seu email: "))      
+                telefone = str(input("Digite seu telefone: "))
+                apartamento = str(input("Digite seu apartamento: "))
+                
+                usuario_cadastrado = usuario.cadastrarUsuario(usuario.obter_proximo_id(), is_adm, nome, cpf, senha, email, telefone, apartamento)
+                
+                if usuario_cadastrado:
+                    print(f"Usuário {nome.upper()} cadastrado com sucesso!")
+                
+                time.sleep(2)
+                opcoes_adm()
                     
             # listar usuário
             elif opcao == 2:
-                nome = str(input("Digite o usuário: "))
-                result = usuario.listarUsuario(nome)
-
-                print(result)
+                while True:
+                    usuario_encontrado = False
+                    nome = str(input("Usuario para buscar: ")).upper()
+                    print("-"*20)
                     
-                # opcoes_adm()
+                    buscar_usuario = usuario.buscarUsuario()
+                    for c in buscar_usuario:
+                        if nome in c['nome'].upper():
+                            print(f"{c['id']} - {c['nome']}")
+                            usuario_encontrado = True
+                    
+                    if not usuario_encontrado:
+                        msg_alerta = f"Alerta: Usuário {buscar_usuario} não existe. Tente novamente ou cadastre esse usuário." 
+                        print(msg_alerta)
+
+                    opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    while opcao not in ("SN"):
+                        print("Opção inválida! Tente novamente.")
+                        opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    
+                    if opcao in "N":    
+                        time.sleep(1)
+                        opcoes_adm()
+                        break
             
             # atualizar usuário    
             elif opcao == 3:
-                
-                opcoes_adm()
+                """while True:
+                    usuario_encontrado = False
+                    nome = str(input("Usuario para buscar: ")).upper()
+                    print("-"*20)
+                    
+                    buscar_usuario = usuario.buscarUsuario()
+                    for c in buscar_usuario:
+                        if nome in c['nome'].upper():
+                            print(f"{c['id']} - {c['nome']}")
+                            usuario_encontrado = True
+                    
+                    if not usuario_encontrado:
+                        msg_alerta = f"Alerta: Usuário {buscar_usuario} não existe. Tente novamente ou cadastre esse usuário." 
+                        print(msg_alerta)
+
+                    opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    while opcao not in ("SN"):
+                        print("Opção inválida! Tente novamente.")
+                        opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    
+                    if opcao in "N":    
+                        time.sleep(1)
+                        opcoes_adm()
+                        break"""
             
             # deletar usuário
             elif opcao == 4: 
@@ -78,7 +142,7 @@ def opcoes_adm():
             
             # sair
             elif opcao == 5:
-                
+                time.sleep(1)
                 opcoes_adm()
                 
             # opção incorreta 
@@ -86,19 +150,27 @@ def opcoes_adm():
                 print("Opção inválida!")
                 time.sleep(2)
                 opcoes_adm()
-                
-                
-        case "2": # Gerenciar condomínios 
+        
+        # GERENCIAR CONDOMÍNIOS
+        case "2": 
             
             print(opc)
-        case "3": # Gerenciar reservas 
+            
+        # GERENCIAR RESERVA
+        case "3": 
             
             print(opc)
-        case "4": # Comunicação 
+            
+        # Comunicação
+        case "4": 
             
             print(opc)
+        
+        # SAIR
         case "5":  
-            print("Saindo...")
+            main.main()
+            
+        # OPCÃO INVÁLIDA
         case __:
             print("Opção inválida!")
             time.sleep(2)
