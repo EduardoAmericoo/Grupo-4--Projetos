@@ -29,13 +29,13 @@ def gerenciarUsuario():
     print("3. Atualizar usuário")  
     print("4. Deletar usuário") 
     print("5. Sair")
-
+ 
 def opcoes_adm():
     menu_adm()
     opc = str(input("Digite a opção: "))
     match(opc):
         
-        # GERENCIAR USUÁRIOS
+        # CRUD USUÁRIOS
         case "1":  
             gerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
@@ -44,30 +44,13 @@ def opcoes_adm():
             if opcao == 1:
                 nome = str(input("Digite seu nome: "))
                 cpf = str(input("Digite seu cpf: "))
-                while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
-                    if cpf == "": 
-                        print("Campo obrigatório!")
-                    elif len(cpf) != 11:
-                        print("Campo deve conter 11 caracteres.")
-                    elif not cpf.isdigit():
-                        print("O cpf deve conter apenas digitos numéricos.")
-                        
-                    cpf = str(input("Digite seu cpf: "))
+                usuario.formatarCPF(cpf)
                     
                 senha = str(input("Digite seu senha: "))
-                while senha == "":
-                    print("Campo obrigatório!")
-                    senha = str(input("Digite seu senha: "))
+                usuario.formatarSenha(senha)
                     
                 is_adm = str(input("Usuário é adm: [S/N] ")).upper()
-                while is_adm not in "SN":
-                    print("Opção inválida!")
-                    is_adm = str(input("Usuário é adm: [S/N] ")).upper()
-                    
-                if is_adm == "S":
-                    is_adm = True
-                else:
-                    is_adm = False
+                usuario.formatarADM(is_adm)
                     
                 email = str(input("Digite seu email: "))      
                 telefone = str(input("Digite seu telefone: "))
@@ -110,30 +93,49 @@ def opcoes_adm():
             
             # atualizar usuário    
             elif opcao == 3:
-                """while True:
-                    usuario_encontrado = False
-                    nome = str(input("Usuario para buscar: ")).upper()
+                usuario_encontrado = False
+                
+                while True:
+                    print("-"*20)
+                    user_to_update = str(input("Usuario para atualizar: ")).upper()
                     print("-"*20)
                     
+                    # verifica se usuario existe
                     buscar_usuario = usuario.buscarUsuario()
-                    for c in buscar_usuario:
-                        if nome in c['nome'].upper():
-                            print(f"{c['id']} - {c['nome']}")
+                    for k, v in enumerate(buscar_usuario):
+                        if user_to_update in v['nome'].upper():
                             usuario_encontrado = True
+                    while not usuario_encontrado:
+                        print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário.")
+                        user_to_update = str(input("Usuario para atualizar: ")).upper()
+                        
+                        for k, v in enumerate(buscar_usuario):
+                            if user_to_update in v['nome'].upper():
+                                usuario_encontrado = True
+                        
+                    nome = str(input("Novo nome: "))
                     
-                    if not usuario_encontrado:
-                        msg_alerta = f"Alerta: Usuário {buscar_usuario} não existe. Tente novamente ou cadastre esse usuário." 
-                        print(msg_alerta)
-
-                    opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
-                    while opcao not in ("SN"):
-                        print("Opção inválida! Tente novamente.")
-                        opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    senha = str(input("Nova senha: "))
+                    usuario.formatarSenha(senha)
+                        
+                    is_adm = str(input("Usuário é adm: [S/N] ")).upper()
+                    usuario.formatarADM(is_adm)
+                        
+                    email = str(input("Novo email: "))      
+                    telefone = str(input("Novo seu telefone: "))
+                    apartamento = str(input("Novo seu apartamento: "))
                     
-                    if opcao in "N":    
-                        time.sleep(1)
+                    user_updated = usuario.atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento)
+                    
+                    if user_updated:
+                        msg_alerta = f"Usuário {user_to_update} atualizado com sucesso!" 
+                        time.sleep(2)
                         opcoes_adm()
-                        break"""
+                        break
+                    elif not user_updated:
+                        msg_alerta = f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário." 
+                        print(msg_alerta)
+                
             
             # deletar usuário
             elif opcao == 4: 

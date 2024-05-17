@@ -52,7 +52,7 @@
     {
         "id": 6,
         "is_adm": true,
-        "nome": "Eduardo Am\u00e9rico",
+        "nome": "Eduardo Am\u00c3\u00a9rico",
         "cpf": "22222222222",
         "senha": "123",
         "email": "eduardo@gmail.com",
@@ -78,5 +78,15 @@
         "email": "asdas",
         "telefone": "dada",
         "apartamento": "sad"
+    },
+    {
+        "id": 9,
+        "is_adm": true,
+        "nome": "Terry",
+        "cpf": "s",
+        "senha": "",
+        "email": "asd",
+        "telefone": "asd",
+        "apartamento": "asd"
     }
 ]

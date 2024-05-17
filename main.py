@@ -60,26 +60,16 @@ def choiceLogin():
             
             nome = str(input("Digite seu nome: "))
             cpf = str(input("Digite seu cpf: "))
-            while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
-                if cpf == "": 
-                    print("Campo obrigatório!")
-                elif len(cpf) != 11:
-                    print("Campo deve conter 11 caracteres.")
-                elif not cpf.isdigit():
-                    print("O cpf deve conter apenas digitos numéricos.")
-                    
-                cpf = str(input("Digite seu cpf: "))
+            usuario.formatarCPF(cpf)
                 
             senha = str(input("Digite seu senha: "))
-            while senha == "":
-                print("Campo obrigatório!")
-                senha = str(input("Digite seu senha: "))
-                
-            is_adm = True
+            usuario.formatarSenha(senha)
+    
             email = str(input("Digite seu email: "))      
             telefone = str(input("Digite seu telefone: "))
             apartamento = str(input("Digite seu apartamento: "))
-            
+            is_adm = True
+                    
             usuario_cadastrado = usuario.cadastrarUsuario(usuario.obter_proximo_id(), is_adm, nome, cpf, senha, email, telefone, apartamento)
             
             if usuario_cadastrado:

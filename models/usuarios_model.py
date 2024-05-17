@@ -44,8 +44,39 @@ def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento)
     return usuario_cadastrado
 
 # Atualizar Usuários
-def atualizarUsuario():
-    print("Atualizar")
+def atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento):
+    file = 'database/usuarios.json'
+    user_updated = False
+    user = {}
+    
+    ### AJUSTAR FOR NÃO TA BUSCANDO O NOME DO USUÁRIO
+    users = buscarUsuario()
+    for u in users:
+        print(u['nome'])
+        """if user_to_update == v['nome'].upper():
+            # cria objeto para escrever
+            user = {
+                "id": v['id'],
+                "is_adm": is_adm,
+                "nome": nome,
+                "cpf": v['cpf'],
+                "senha": senha,
+                "email": email,
+                "telefone": telefone,
+                "apartamento": apartamento   
+            }
+            break"""
+        
+        # adiciona o novo usuário na lista    
+        users.insert(u['id'], user)
+
+    # escrever em arquivos json
+    with open(file, 'w', encoding='utf8') as arquivo:
+        arquivo.write(json.dumps(users, indent=4))
+        
+        user_updated = True
+    
+    return user_updated
     
 # Atualizar Usuários
 def deletarUsuario():
@@ -86,3 +117,39 @@ def autenticar_usuario(cpf, senha):
         
     usuario_autenticado = False
     return usuario_autenticado
+
+# FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
+def formatarCPF(cpf):
+    while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
+        if cpf == "": 
+            print("Campo obrigatório!")
+        elif len(cpf) != 11:
+            print("Campo deve conter 11 caracteres.")
+        elif not cpf.isdigit():
+            print("O cpf deve conter apenas digitos numéricos.")
+                        
+        cpf = str(input("Digite seu cpf: "))
+        
+        return cpf 
+        
+def formatarSenha(senha):
+    while senha == "":
+        print("Campo obrigatório!")
+        senha = str(input("Digite seu senha: "))
+    
+        return senha
+
+def formatarADM(is_adm):
+    while is_adm not in "SN":
+        print("Opção inválida!")
+        is_adm = str(input("Usuário é adm: [S/N] ")).upper()
+                    
+        if is_adm == "S":
+            is_adm = True
+        else:
+            is_adm = False
+
+        return is_adm
+
+def verificarCPFCadastrado():
+    print("CPF já cadastrado!")
