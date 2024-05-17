@@ -12,8 +12,8 @@ def menuPrincipal():
     print("="*21)
     
     print("1. Fazer login") 
-    print("2. Cadastro de gestores")
-    print("0. Sair") 
+    print("2. Se cadastrar como gestor")
+    print("0. Sair do sistema") 
 
 def choiceLogin():  
     menuPrincipal()
@@ -23,8 +23,9 @@ def choiceLogin():
         case 1:
             os.system('cls')
             print("="*21)
-            print(" LOGIN NO SISTEMA ")
-            
+            print(" LOGIN ")
+            print("="*21)
+
             while True:
                 print("="*21)
                 cpf = str(input("CPF: "))

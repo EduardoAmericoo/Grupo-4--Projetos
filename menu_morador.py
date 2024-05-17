@@ -3,7 +3,7 @@ import os
 def menu_morador():
     os.system('cls')
     print("="*21)
-    print(" Menu Morador ")
+    print(" MENU DE MORADOR ")
     print("="*21)
     
     print("1. Usuário")
@@ -12,4 +12,4 @@ def menu_morador():
     print("4. Sair")
 
 def opcoes_morador():
-    print("Teste")
+    print("Insira a opção escolhida -> ")
