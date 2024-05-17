@@ -96,6 +96,10 @@ def opcoes_adm():
                 usuario_encontrado = False
                 
                 while True:
+                    # Exibir usuários antes de atualizar
+                    # chamar a função buscarUsuario() e atribuir a uma variável
+                    # for percorrendo os valores dela e dar um print nos valores de nome
+                    
                     print("-"*20)
                     user_to_update = str(input("Usuario para atualizar: ")).upper()
                     print("-"*20)
