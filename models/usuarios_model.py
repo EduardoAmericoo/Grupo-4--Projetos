@@ -49,7 +49,6 @@ def atualizarUsuario(user_to_update):
     user_updated = False
     user = {}
     
-    ### AJUSTAR FOR NÃO TA BUSCANDO O NOME DO USUÁRIO
     users = buscarUsuario()
     for c in users:
         if user_to_update == c['nome'].upper():
@@ -74,9 +73,26 @@ def atualizarUsuario(user_to_update):
     
     return user_updated
     
-# Atualizar Usuários
-def deletarUsuario():
-    print("Deletar")
+# Deletar Usuários
+def deletarUsuario(user_to_delete):
+    file = 'database/usuarios.json'
+    user_deleted = False
+    new_list = []
+
+    # Verifica todos os registros que não batem com o nome e adiciona em uma lista
+    users = buscarUsuario()
+    for c in users:
+        if user_to_delete != c['nome'].upper():
+            new_list.append(c)
+        
+    users = new_list 
+    # escrever em arquivos json
+    with open(file, 'w', encoding='utf8') as arquivo:
+        arquivo.write(json.dumps(users, indent=4))
+        
+        user_deleted = True
+    
+    return user_deleted
 
 # Buscar Usuários
 def buscarUsuario():
@@ -116,14 +132,24 @@ def autenticar_usuario(cpf, senha):
 
 # FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
 def formatarCPF(cpf):
-    while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
+    cpf_cadastrado = False
+    users = buscarUsuario()
+
+    for c in users:
+        if cpf == c['cpf']:
+            cpf_cadastrado = True
+        break
+
+    while len(cpf) != 11 or not cpf.isdigit() or cpf == "" or cpf_cadastrado:
         if cpf == "": 
             print("Campo obrigatório!")
         elif len(cpf) != 11:
             print("Campo deve conter 11 caracteres.")
         elif not cpf.isdigit():
             print("O cpf deve conter apenas digitos numéricos.")
-                        
+        elif cpf_cadastrado:
+            print(f"O CPF '{cpf}' já está cadastrado.")
+
         cpf = str(input("Digite seu cpf: "))
         
         return cpf 
@@ -146,6 +172,4 @@ def formatarADM(is_adm):
             is_adm = False
 
         return is_adm
-
-def verificarCPFCadastrado():
-    print("CPF já cadastrado!")
+        

@@ -10,22 +10,12 @@
         "apartamento": "401"
     },
     {
-        "id": 2,
-        "is_adm": false,
-        "nome": "Igor Soares",
-        "cpf": "70464712401",
-        "senha": "123",
-        "email": "igor@gmail.com",
-        "telefone": "81989189090",
-        "apartamento": "301"
-    },
-    {
         "id": 3,
         "is_adm": "N",
-        "nome": "Eufrasio",
+        "nome": "eufra",
         "cpf": "122222",
         "senha": "123",
-        "email": "eufrasio@gmail.com",
+        "email": "eufra@gmail.com",
         "telefone": "123",
         "apartamento": "123"
     },

@@ -115,8 +115,27 @@ def opcoes_adm():
                 
             # deletar usuário
             elif opcao == 4: 
-                
-                opcoes_adm()
+                while True:
+                    print("-"*20)
+                    user_to_delete = str(input("Usuario para deletar: ")).upper()
+                    print("-"*20)
+                    
+                    # verifica se usuario existe
+                    user_deleted = usuario.deletarUsuario(user_to_delete)
+                    
+                    if user_deleted:
+                        os.system('cls')
+                        print(f"Usuário {user_to_delete} deletado com sucesso!") 
+                        time.sleep(2)
+                        opcoes_adm()
+                        break
+
+                    elif not user_deleted:
+                        os.system('cls')
+                        print(f"Alerta: Usuário {user_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse usuário.")
+                        time.sleep(2) 
+                    
+                    opcoes_adm()
             
             # sair
             elif opcao == 5:
