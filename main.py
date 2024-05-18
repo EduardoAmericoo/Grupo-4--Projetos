@@ -50,7 +50,7 @@ def choiceLogin():
                 
                 elif is_adm is True:    
                     # Menu ADM
-                    menu_adm.opcoes_adm()      
+                    menu_adm.choiceAdm()
                 else:
                     main()
         case 2:

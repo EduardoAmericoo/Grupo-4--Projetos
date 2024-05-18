@@ -1,4 +1,5 @@
 import json
+import menu_adm
 
 # Obtém o próximo ID
 def obter_proximo_id():
@@ -43,45 +44,6 @@ def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento)
     
     return usuario_cadastrado
 
-# Atualizar Usuários
-def atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento):
-    file = 'database/usuarios.json'
-    user_updated = False
-    user = {}
-    
-    ### AJUSTAR FOR NÃO TA BUSCANDO O NOME DO USUÁRIO
-    users = buscarUsuario()
-    for u in users:
-        print(u['nome'])
-        """if user_to_update == v['nome'].upper():
-            # cria objeto para escrever
-            user = {
-                "id": v['id'],
-                "is_adm": is_adm,
-                "nome": nome,
-                "cpf": v['cpf'],
-                "senha": senha,
-                "email": email,
-                "telefone": telefone,
-                "apartamento": apartamento   
-            }
-            break"""
-        
-        # adiciona o novo usuário na lista    
-        users.insert(u['id'], user)
-
-    # escrever em arquivos json
-    with open(file, 'w', encoding='utf8') as arquivo:
-        arquivo.write(json.dumps(users, indent=4))
-        
-        user_updated = True
-    
-    return user_updated
-    
-# Atualizar Usuários
-def deletarUsuario():
-    print("Deletar")
-
 # Buscar Usuários
 def buscarUsuario():
     file = 'database/usuarios.json'
@@ -91,6 +53,73 @@ def buscarUsuario():
         data = json.loads(read) # carregar os dados no formato json
             
     return data
+
+# Atualizar Usuários
+def atualizarUsuario(is_adm, nome, cpf, senha, email, telefone, apartamento):
+    file = 'database/usuarios.json'
+    with open(file, 'r') as usuario:
+        read = usuario.read()
+        data = json.loads(read)
+        print(data)
+        
+    while True:
+        usuarioAtualizado = False
+        userAtt = str(input('Informe o usuário que deseja atualizar: ')).upper()
+        user = {}
+
+        for c in buscarUsuario():
+            print(f'{c['id']} - {c['nome']}')
+            if menu_adm.userAtt == c['nome'].upper():
+                
+                is_adm = str(input("Administrador? [S/N]: ")).upper()
+                formatarADM(is_adm)
+                
+                nome = str(input("Novo nome: "))
+                formatarNome(nome)
+
+                cpf = str(input('Novo CPF: '))
+                formatarCPF(cpf)
+                
+                senha = str(input("Nova senha: "))
+                formatarSenha(senha)
+                    
+                email = str(input("Novo email: "))
+                formatarEmail(email)
+
+                telefone = str(input("Novo telefone: "))
+                formatarTelefone(telefone)
+
+                apartamento = str(input("Novo apartamento: "))
+                formatarApartamento(apartamento)
+                
+                usuarioAtualizado = usuario.atualizarUsuario(nome, senha, is_adm, email, telefone, apartamento)
+
+                user = {
+                    "id": c['id'],
+                    "is_adm": is_adm,
+                    "nome": nome,
+                    "cpf": cpf,
+                    "senha": senha,
+                    "email": email,
+                    "telefone": telefone,
+                    "apartamento": apartamento   
+                }
+                break
+            
+            # adiciona o novo usuário no dicionário
+            buscarUsuario().insert(c['id'], user)
+
+            # escrever em arquivos json
+            with open(file, 'w', encoding='utf8') as arquivo:
+                arquivo.write(json.dumps(userAtt, indent=4))
+                
+                usuarioAtualizado = True
+        
+        return usuarioAtualizado
+    
+# Atualizar Usuários
+def deletarUsuario():
+    print("Deletar")
 
 # Autenticar Usuários
 def autenticar_usuario(cpf, senha):

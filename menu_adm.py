@@ -31,13 +31,13 @@ def gerenciarUsuario():
     print("0. Voltar ao menu de administrador")
     print("10. Sair do sistema")
  
-def opcoes_adm():
+def choiceAdm():
     menuAdm()
     opc = int(input("Digite a opção: "))
     match(opc):
         
         # CRUD USUÁRIOS
-        case 1:  
+        case 1:
             gerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
             
@@ -73,7 +73,7 @@ def opcoes_adm():
                         print(f"Usuário {nome.upper()} cadastrado com sucesso!")
                     
                     time.sleep(2)
-                    opcoes_adm()
+                    choiceAdm()
                         
                 # LISTA DE USUÁRIOS
                 case 2:
@@ -83,81 +83,98 @@ def opcoes_adm():
                         data = json.loads(read)
                         print(data)
                     while True:
-                        usuario_encontrado = False
-                        buscarsn = str(input('Deseja buscar um usuário em específico?'))
-                        if buscarsn == 'S':
+                        usuarioEncontrado = False
+                        print('Digite B para buscar um usuário específico.')
+                        print('Se deseja voltar ao menu de gerenciamento de usuários, digite M.')
+                        pOpc = str(input('Digite aqui: ')).upper()
+                        if pOpc == 'B':
                             nome = str(input("Usuário a ser buscado: ")).upper()
                             print("-"*20)
                             
-                            buscar_usuario = usuario.buscarUsuario()
-                            for c in buscar_usuario:
+                            buscarUsuario = usuario.buscarUsuario()
+                            for c in buscarUsuario:
                                 if nome in c['nome'].upper():
                                     print(f"{c['id']} - {c['nome']}")
-                                    usuario_encontrado = True
+                                    usuarioEncontrado = True
                             
-                            if not usuario_encontrado:
-                                msg_alerta = f"Alerta: Usuário {buscar_usuario} não existe. Tente novamente ou cadastre esse usuário." 
+                            if not usuarioEncontrado:
+                                msg_alerta = f"Alerta: Usuário {buscarUsuario} não existe. Tente novamente ou cadastre esse usuário." 
                                 print(msg_alerta)
 
-                            opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
-                            while opcao not in ("SN"):
+                            sOpc = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                            while sOpc not in ("SN"):
                                 print("Opção inválida! Tente novamente.")
-                                opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                                sOpc = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
                             
-                            if opcao in "N":
+                            if opcao == "N":
                                 print('Voltando ao menu...')
                                 time.sleep(1)
-                                opcoes_adm()
+                                choiceAdm()
                                 break
+                        elif pOpc == "M":
+                            choiceAdm()
+                        
+                        while pOpc != 'B' and pOpc != 'M':
+                            print('Opcão inválida! Por favor, tente novamente.')
+                            print('Digite B para buscar um usuário específico.')
+                            print('Se deseja voltar ao menu de gerenciamento de usuários, digite M.')
+                            pOpc = str(input('Digite aqui: ')).upper()
+                            
+
                 
                 # ATUALIZAR USUÁRIO    
                 case 3:
-                    usuario_encontrado = False
+                    file = 'database/usuarios.json'
+                    with open(file, mode='r') as arquivo:
+                        read = arquivo.read()
+                        data = json.loads(read)
+                        print(data)
                     
                     while True:
-                        # Exibir usuários antes de atualizar
-                        # chamar a função buscarUsuario() e atribuir a uma variável
-                        # for percorrendo os valores dela e dar um print nos valores de nome
+                        usuario.atualizarUsuario()
+                        '''usuarioAtualizado = False
+                        userAtt = str(input('Informe o usuário que deseja atualizar: ')).upper()
+                        buscarUsuario = usuario.buscarUsuario()
                         
-                        print("-"*20)
-                        user_to_update = str(input("Usuario para atualizar: ")).upper()
-                        print("-"*20)
-                        
-                        # verifica se usuario existe
-                        buscar_usuario = usuario.buscarUsuario()
-                        for k, v in enumerate(buscar_usuario):
-                            if user_to_update in v['nome'].upper():
-                                usuario_encontrado = True
-                        while not usuario_encontrado:
-                            print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário.")
-                            user_to_update = str(input("Usuario para atualizar: ")).upper()
+                        for c in buscarUsuario:
+                            print(f'{c['id']} - {c['nome']}')
+                            usuarioAtualizado = True
                             
-                            for k, v in enumerate(buscar_usuario):
-                                if user_to_update in v['nome'].upper():
-                                    usuario_encontrado = True
+                            is_adm = str(input("Administrador? [S/N]: ")).upper()
+                            usuario.formatarADM(is_adm)
                             
-                        nome = str(input("Novo nome: "))
-                        
-                        senha = str(input("Nova senha: "))
-                        usuario.formatarSenha(senha)
+                            nome = str(input("Novo nome: "))
+                            usuario.formatarNome(nome)
+
+                            cpf = str(input('Novo CPF: '))
+                            usuario.formatarCPF(cpf)
                             
-                        is_adm = str(input("Usuário é adm: [S/N] ")).upper()
-                        usuario.formatarADM(is_adm)
+                            senha = str(input("Nova senha: "))
+                            usuario.formatarSenha(senha)
+                                
+                            email = str(input("Novo email: "))
+                            usuario.formatarEmail(email)
+
+                            telefone = str(input("Novo telefone: "))
+                            usuario.formatarTelefone(telefone)
+
+                            apartamento = str(input("Novo apartamento: "))
+                            usuario.formatarApartamento(apartamento)
                             
-                        email = str(input("Novo email: "))      
-                        telefone = str(input("Novo seu telefone: "))
-                        apartamento = str(input("Novo seu apartamento: "))
-                        
-                        user_updated = usuario.atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento)
-                        
+                            user_updated = usuario.atualizarUsuario(userAtt, nome, senha, is_adm, email, telefone, apartamento)'''
+                            
                         if user_updated:
-                            msg_alerta = f"Usuário {user_to_update} atualizado com sucesso!" 
+                            msg_alerta = f"Usuário {userAtt} atualizado com sucesso!" 
                             time.sleep(2)
-                            opcoes_adm()
+                            choiceAdm()
                             break
                         elif not user_updated:
-                            msg_alerta = f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário." 
+                            msg_alerta = f"Alerta: Usuário {userAtt} não existe. Tente novamente ou cadastre esse usuário." 
                             print(msg_alerta)
+
+                        while not usuarioEncontrado:
+                            print(f"Alerta: Usuário {nome} não existe. Tente novamente ou cadastre esse usuário.")
+                            nome = str(input('Informe o usuário que deseja atualizar: ')).upper()
                     
                 
                 # DELETAR USUÁRIO
@@ -212,4 +229,9 @@ def opcoes_adm():
             time.sleep(2)
             opcoes_adm()
     
-    
+def mainMenuAdm():
+    menuAdm()
+    choiceAdm()
+
+if __name__ == '__main__':
+    mainMenuAdm()
