@@ -93,50 +93,26 @@ def opcoes_adm():
             
             # atualizar usuário    
             elif opcao == 3:
-                usuario_encontrado = False
-                
                 while True:
                     print("-"*20)
                     user_to_update = str(input("Usuario para atualizar: ")).upper()
                     print("-"*20)
                     
                     # verifica se usuario existe
-                    buscar_usuario = usuario.buscarUsuario()
-                    for k, v in enumerate(buscar_usuario):
-                        if user_to_update in v['nome'].upper():
-                            usuario_encontrado = True
-                    while not usuario_encontrado:
-                        print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário.")
-                        user_to_update = str(input("Usuario para atualizar: ")).upper()
-                        
-                        for k, v in enumerate(buscar_usuario):
-                            if user_to_update in v['nome'].upper():
-                                usuario_encontrado = True
-                        
-                    nome = str(input("Novo nome: "))
-                    
-                    senha = str(input("Nova senha: "))
-                    usuario.formatarSenha(senha)
-                        
-                    is_adm = str(input("Usuário é adm: [S/N] ")).upper()
-                    usuario.formatarADM(is_adm)
-                        
-                    email = str(input("Novo email: "))      
-                    telefone = str(input("Novo seu telefone: "))
-                    apartamento = str(input("Novo seu apartamento: "))
-                    
-                    user_updated = usuario.atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento)
+                    user_updated = usuario.atualizarUsuario(user_to_update)
                     
                     if user_updated:
-                        msg_alerta = f"Usuário {user_to_update} atualizado com sucesso!" 
+                        os.system('cls')
+                        print(f"Usuário {user_to_update} atualizado com sucesso!") 
                         time.sleep(2)
                         opcoes_adm()
                         break
+
                     elif not user_updated:
-                        msg_alerta = f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário." 
-                        print(msg_alerta)
+                        os.system('cls')
+                        print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário.")
+                        time.sleep(2) 
                 
-            
             # deletar usuário
             elif opcao == 4: 
                 

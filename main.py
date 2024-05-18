@@ -7,9 +7,9 @@ import menu_morador
 
 def menuPrincipal():
     os.system('cls')
-    print("="*21)
+    print("="*25)
     print(" BEM VINDO(A) AO SISTEMA ")
-    print("="*21)
+    print("="*25)
     
     print("1. Fazer login") 
     print("2. Se cadastrar como gestor")
@@ -21,13 +21,12 @@ def choiceLogin():
     
     match(opc):
         case 1:
-            os.system('cls')
-            print("="*21)
-            print(" LOGIN ")
-            print("="*21)
-
             while True:
-                print("="*21)
+                os.system('cls')
+                print("="*8)
+                print(" LOGIN ")
+                print("="*8)
+
                 cpf = str(input("CPF: "))
                 senha = str(input("Senha: "))
                 print("="*21)
@@ -36,12 +35,23 @@ def choiceLogin():
                 usuario_autenticado = usuario.autenticar_usuario(cpf, senha)
                 
                 if usuario_autenticado == False:
-                    print("Usuário inválido, tente novamente!")
+                    os.system('cls')
+                    print("="*34)
+                    print(" ERRO NA AUTENTICAÇÃO DO USUÁRIO ")
+                    print("="*34)
+                    time.sleep(2)
                 else:
                     break
             
             # Verifica se o usuário é um morador ou adm
             if usuario_autenticado:
+                os.system('cls')
+                print("="*34)
+                print(" USUÁRIO AUTENTICADO COM SUCESSO ")
+                print("="*34)
+                time.sleep(2)
+
+
                 is_adm = usuario.is_adm
             
                 if is_adm is False:

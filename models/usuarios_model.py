@@ -44,37 +44,33 @@ def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento)
     return usuario_cadastrado
 
 # Atualizar Usuários
-def atualizarUsuario(user_to_update, nome, senha, is_adm, email, telefone, apartamento):
+def atualizarUsuario(user_to_update):
     file = 'database/usuarios.json'
     user_updated = False
     user = {}
     
     ### AJUSTAR FOR NÃO TA BUSCANDO O NOME DO USUÁRIO
     users = buscarUsuario()
-    for u in users:
-        print(u['nome'])
-        """if user_to_update == v['nome'].upper():
-            # cria objeto para escrever
-            user = {
-                "id": v['id'],
-                "is_adm": is_adm,
-                "nome": nome,
-                "cpf": v['cpf'],
-                "senha": senha,
-                "email": email,
-                "telefone": telefone,
-                "apartamento": apartamento   
-            }
-            break"""
+    for c in users:
+        if user_to_update == c['nome'].upper():
+            c['nome'] = str(input("Novo nome: "))
+                    
+            c['senha'] = str(input("Nova senha: "))
+            formatarSenha(c['senha'])
+                        
+            c['is_adm'] = str(input("Usuário é adm: [S/N] ")).upper()
+            formatarADM(c['is_adm'])
+                       
+            c['email'] = str(input("Novo email: "))      
+            c['telefone'] = str(input("Novo seu telefone: "))
+            c['apartamento'] = str(input("Novo seu apartamento: "))
         
-        # adiciona o novo usuário na lista    
-        users.insert(u['id'], user)
-
-    # escrever em arquivos json
-    with open(file, 'w', encoding='utf8') as arquivo:
-        arquivo.write(json.dumps(users, indent=4))
+            # escrever em arquivos json
+            with open(file, 'w', encoding='utf8') as arquivo:
+                arquivo.write(json.dumps(users, indent=4))
         
-        user_updated = True
+                user_updated = True
+            break
     
     return user_updated
     
