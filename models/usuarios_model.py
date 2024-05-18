@@ -94,7 +94,7 @@ def buscarUsuario():
 
 # Autenticar Usuários
 def autenticar_usuario(cpf, senha):
-    global id_user, is_adm, nome_user, cpf_user, senha_user, email_user, telefone_user, apto_user
+    global id, is_adm, nome, email, telefone, apartamento
     
     users = buscarUsuario()
     for u in users:
@@ -103,14 +103,14 @@ def autenticar_usuario(cpf, senha):
         password = senha
     
         if cpf == u['cpf'] and senha == u['senha']:
-            id_user = u['id']
+            id = u['id']
             is_adm = u['is_adm']
-            nome_user = u['nome']
-            cpf_user = u['cpf']
-            senha_user = u['senha']
-            email_user = u['email']
-            telefone_user = u['telefone']
-            apto_user = u['apartamento']
+            nome = u['nome']
+            cpf = u['cpf']
+            senha = u['senha']
+            email = u['email']
+            telefone = u['telefone']
+            apartamento = u['apartamento']
             
             usuario_autenticado = True
             return usuario_autenticado
@@ -119,37 +119,60 @@ def autenticar_usuario(cpf, senha):
     return usuario_autenticado
 
 # FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
-def formatarCPF(cpf):
-    while len(cpf) != 11 or not cpf.isdigit() or cpf == "":
-        if cpf == "": 
-            print("Campo obrigatório!")
-        elif len(cpf) != 11:
-            print("Campo deve conter 11 caracteres.")
-        elif not cpf.isdigit():
-            print("O cpf deve conter apenas digitos numéricos.")
-                        
-        cpf = str(input("Digite seu cpf: "))
-        
-        return cpf 
-        
-def formatarSenha(senha):
-    while senha == "":
-        print("Campo obrigatório!")
-        senha = str(input("Digite seu senha: "))
-    
-        return senha
-
 def formatarADM(is_adm):
-    while is_adm not in "SN":
-        print("Opção inválida!")
-        is_adm = str(input("Usuário é adm: [S/N] ")).upper()
-                    
-        if is_adm == "S":
-            is_adm = True
-        else:
-            is_adm = False
 
-        return is_adm
+    while is_adm != "S" and is_adm != "N":
+        if is_adm == "":
+            print("Campo obrigatório!")
+        else:
+            print("Resposta inválida. Por favor, use apenas 'S' ou 'N'.")
+        is_adm = str(input('Administrador? [S/N]: ')).upper()
+
+    if is_adm == "S":
+        is_adm = True
+
+    if is_adm == "N":
+        is_adm = False
+    
+def formatarNome(nome):
+    while nome == "":
+        print("Campo obrigatório!")
+        nome = str(input('Nome: '))
+
+def formatarCPF(cpf):
+    while len(cpf) != 11:
+        if cpf == "":
+            print("Campo obrigatório!")
+        else:
+            print("Campo deve conter 11 caracteres.")
+        cpf = str(input('CPF: '))
+    
+    while not cpf.isdigit():
+        print("O cpf deve conter apenas digitos numéricos.")
+        cpf = str(input("CPF: "))
+
+def formatarSenha(senha):
+    while len(senha) < 8:
+        if senha == "":
+            print("Campo obrigatório!")
+        else:
+            print("A senha deve ter, no mínimo, 8 caracteres!")
+        senha = str(input('Senha: '))
+
+def formatarEmail(email):
+    while email == "":
+        print("Campo obrigatório!")
+        email = str(input('E-mail: '))
+        
+def formatarTelefone(telefone):
+    while telefone == "":
+        print("Campo obrigatório!")
+        telefone = str(input('Telefone: '))
+        
+def formatarApartamento(apartamento):
+    while apartamento == "":
+        print("Campo obrigatório!")
+        apartamento = str(input('Apartamento: '))
 
 def verificarCPFCadastrado():
     print("CPF já cadastrado!")
