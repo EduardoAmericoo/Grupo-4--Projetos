@@ -18,7 +18,7 @@ def menu_adm():
     print("4. Comunicação") # CRUD Comunicação
     print("5. Sair") 
     
-def gerenciarUsuario():
+def menuGerenciarUsuario():
     os.system('cls')
     print("="*21)
     print(" Gerenciar Usuários ")
@@ -29,15 +29,27 @@ def gerenciarUsuario():
     print("3. Atualizar usuário")  
     print("4. Deletar usuário") 
     print("5. Sair")
+    
+def menuGerenciarCondominio():
+    os.system('cls')
+    print("="*21)
+    print(" Gerenciar Condominio ")
+    print("="*21)
+
+    print("1. Cadastrar condomínio") 
+    print("2. Listar condomínio") 
+    print("3. Atualizar condomínio")  
+    print("4. Deletar condomínio") 
+    print("5. Sair")
  
 def opcoes_adm():
     menu_adm()
     opc = str(input("Digite a opção: "))
     match(opc):
         
-        # CRUD USUÁRIOS
+        # GERENCIAR USUÁRIOS
         case "1":  
-            gerenciarUsuario()
+            menuGerenciarUsuario()
             opcao = int(input("Digite uma opção: "))
             
             # cadastrar usuário
@@ -64,6 +76,12 @@ def opcoes_adm():
                 time.sleep(2)
                 opcoes_adm()
                     
+                # solicitar as informações para o usuario
+                # criar uma função para tratar os dados (models)
+                # chamar a função
+                # tratar os dados dentro da função
+                # verificar se a ação deu certo
+                
             # listar usuário
             elif opcao == 2:
                 while True:
@@ -150,8 +168,8 @@ def opcoes_adm():
         
         # GERENCIAR CONDOMÍNIOS
         case "2": 
-            
-            print(opc)
+            menuGerenciarCondominio()
+            opc = int(input("Digite uma opção: "))
             
         # GERENCIAR RESERVA
         case "3": 

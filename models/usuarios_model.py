@@ -84,7 +84,7 @@ def deletarUsuario(user_to_delete):
     for c in users:
         if user_to_delete != c['nome'].upper():
             new_list.append(c)
-        
+    
     users = new_list 
     # escrever em arquivos json
     with open(file, 'w', encoding='utf8') as arquivo:
