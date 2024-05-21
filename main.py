@@ -8,7 +8,7 @@ import menu_morador
 def menuPrincipal():
     os.system('cls')
     print("="*25)
-    print(" BEM VINDO(A) AO SISTEMA ")
+    print(" BEM VINDO(A) À CONDTECH ")
     print("="*25)
     
     print("1. Fazer login") 
