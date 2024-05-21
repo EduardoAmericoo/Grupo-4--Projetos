@@ -169,8 +169,127 @@ def opcoes_adm():
         # GERENCIAR CONDOMÍNIOS
         case "2": 
             menuGerenciarCondominio()
-            opc = int(input("Digite uma opção: "))
+            opcao = int(input("Digite uma opção: "))
             
+            # cadastrar condomínio
+            if opcao == 1:
+                nome_cond = str(input("Nome do condomínio: "))
+                rua = str(input("Rua: "))
+                bairro = str(input("Bairro: "))
+                cidade = str(input("Cidade: "))
+                estado = str(input("Estado: [UF] ")).upper()
+                
+                endereco = rua + ", " + bairro + " - " + cidade + "/" + estado 
+               
+                cep = str(input("CEP: "))
+                condominio.formatarCEP(cep)
+                    
+                qntd_andares = str(input("Quantidade de andares: "))      
+                qntd_apto = str(input("Quantidade de apartamentos: "))
+                
+                condominio_cadastrado = condominio.cadastrarCondominio(condominio.obter_proximo_id(), nome_cond, endereco, cep, qntd_andares, qntd_apto)
+                
+                if condominio_cadastrado:
+                    print(f"Condomínio {nome_cond.upper()} / CEP: {cep} cadastrado com sucesso!")
+                
+                time.sleep(2)
+                opcoes_adm()
+                    
+                # solicitar as informações para o usuario
+                # criar uma função para tratar os dados (models)
+                # chamar a função
+                # tratar os dados dentro da função
+                # verificar se a ação deu certo
+                
+            # listar condomínios
+            elif opcao == 2:
+                while True:
+                    condominio_encontrado = False
+                    
+                    buscar_condominio = condominio.buscarCondominio()
+                    for c in buscar_condominio:
+                        print(f"{c['id']} - {c['nome']}")
+                        
+                    nome = str(input("Condomínio para buscar: ")).upper()
+                    print("-"*20)
+                    
+                    for c in buscar_condominio:
+                        if nome in c['nome'].upper():
+                            print(f"Nome: {c['nome']} \nEndereço: {c['endereco']}")
+                            condominio_encontrado = True
+                    
+                    if not condominio_encontrado:
+                        msg_alerta = f"Alerta: Condomínio {buscar_condominio} não existe. Tente novamente ou cadastre esse condomínio." 
+                        print(msg_alerta)
+
+                    opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    while opcao not in ("SN"):
+                        print("Opção inválida! Tente novamente.")
+                        opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                    
+                    if opcao in "N":    
+                        time.sleep(1)
+                        opcoes_adm()
+                        break
+            
+            # atualizar condomínios    
+            elif opcao == 3:
+                while True:
+                    print("-"*20)
+                    cond_to_update = str(input("Condomínio para atualizar: ")).upper()
+                    print("-"*20)
+                    
+                    # verifica se usuario existe
+                    cond_updated = condominio.atualizarCondominio(cond_to_update)
+                    
+                    if cond_updated:
+                        os.system('cls')
+                        print(f"Condomínio {cond_to_update} atualizado com sucesso!") 
+                        time.sleep(2)
+                        opcoes_adm()
+                        break
+
+                    elif not cond_updated:
+                        os.system('cls')
+                        print(f"Alerta: Condomínio {cond_to_update} não existe. Tente novamente ou cadastre esse condomínio.")
+                        time.sleep(2) 
+                
+            # deletar condomínios
+            elif opcao == 4: 
+                while True:
+                    print("-"*20)
+                    cond_to_delete = str(input("Condomínio para deletar: ")).upper()
+                    print("-"*20)
+                    
+                    # verifica se usuario existe
+                    cond_deleted = condominio.deletarCondominio(cond_to_delete)
+                    
+                    if cond_deleted:
+                        os.system('cls')
+                        print(f"Condomínio {cond_to_delete} deletado com sucesso!") 
+                        time.sleep(2)
+                        opcoes_adm()
+                        break
+
+                    elif not cond_deleted:
+                        os.system('cls')
+                        print(f"Alerta: Condomínio {cond_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse condomínio.")
+                        time.sleep(2) 
+                    
+                    opcoes_adm()
+            
+            # sair
+            elif opcao == 5:
+                time.sleep(1)
+                opcoes_adm()
+                
+            # opção incorreta 
+            else:
+                print("Opção inválida!")
+                time.sleep(2)
+                opcoes_adm()
+                
+                
         # GERENCIAR RESERVA
         case "3": 
             

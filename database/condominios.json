@@ -1,5 +1,26 @@
 [
     {
-        
+        "id": 1,
+        "nome": "Zumbi",
+        "endereco": "Avenida Santos Dummont, Aflitos - Recife/PE",
+        "cep": "52050-035",
+        "qntd_andares": "10",
+        "qntd_apto": "20"
+    },
+    {
+        "id": 2,
+        "nome": "Ines Andreasa",
+        "endereco": "Avenida Recife, Areias - Recife/PE",
+        "cep": "22222-222",
+        "qntd_andares": "22",
+        "qntd_apto": "22"
+    },
+    {
+        "id": 3,
+        "nome": "Casa de Bruno",
+        "endereco": "Rua tal , Bairro tal - Carpina/PE",
+        "cep": "22222-222",
+        "qntd_andares": "12",
+        "qntd_apto": "2"
     }
 ]
