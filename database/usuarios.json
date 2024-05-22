@@ -3,7 +3,7 @@
         "id": 1,
         "is_adm": true,
         "nome": "adm default",
-        "cpf": "70363713409",
+        "cpf": "12345678910",
         "senha": "123",
         "email": "terry@gmail.com",
         "telefone": "81989189090",
@@ -87,6 +87,36 @@
         "senha": "123",
         "email": "terry@gmail.com",
         "telefone": "123",
+        "apartamento": "123"
+    },
+    {
+        "id": 11,
+        "is_adm": true,
+        "nome": "Terry Damasio ",
+        "cpf": "12345678911",
+        "senha": "12345",
+        "email": "terrydamasio@gmail.com",
+        "telefone": "12345678910",
+        "apartamento": "122"
+    },
+    {
+        "id": 12,
+        "is_adm": "S",
+        "nome": "Terry ",
+        "cpf": "70363713409",
+        "senha": "1234",
+        "email": "terrydamasio610@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "123"
+    },
+    {
+        "id": 13,
+        "is_adm": "S",
+        "nome": "Aeda 1",
+        "cpf": "12345678912",
+        "senha": "12345678",
+        "email": "aeda1@gmail.com",
+        "telefone": "1234444444",
         "apartamento": "123"
     }
 ]

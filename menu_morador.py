@@ -8,8 +8,10 @@ def menu_morador():
     
     print("1. Usuário")
     print("2. Reserva de áreas comuns")
-    print("3. Comunicação")
-    print("4. Sair")
+    print("3. Avisos e Notificações")
+    print("4. Chamados")
+    print("5. Chat")
+    print("0. Sair")
 
 def opcoes_morador():
     print("Insira a opção escolhida -> ")

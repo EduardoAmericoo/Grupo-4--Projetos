@@ -134,23 +134,20 @@ def autenticar_usuario(cpf, senha):
 # FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
 def formatarADM(is_adm):
 
-    while is_adm != "S" and is_adm != "N":
-        if is_adm == "":
-            print("Campo obrigatório!")
-        else:
-            print("Resposta inválida. Use apenas 'S' ou 'N'.")
+    while is_adm not in "SN":
+        print("Campo obrigatório! Use apenas 'S' ou 'N'.")
         
         is_adm = str(input("Administrador? [S/N]: ")).upper()
                     
         if is_adm == "S":
             is_adm = True
-
         else:
             is_adm = False
 
 def formatarNome(nome):
     while nome == "":
         print("Campo obrigatório!")
+        
         nome = str(input('Nome: '))
 
 def formatarCPF(cpf):
@@ -161,42 +158,38 @@ def formatarCPF(cpf):
         if cpf == c['cpf']:
             cpf_cadastrado = True
         break
-
-    while len(cpf) != 11:
-        if cpf == "": 
-            print("Campo obrigatório!")
-        else:
-            print("Campo deve conter 11 caracteres.")
-
-        cpf = str(input("CPF: "))
     
-    while not cpf.isdigit() or cpf_cadastrado:
-        print("O cpf deve conter apenas digitos numéricos.")
-        cpf = str(input("CPF: "))
+    while len(cpf) != 11 or not cpf.isnumeric() or cpf_cadastrado:
+        if len(cpf) != 11: 
+            print("Este campo é obrigatório e deve conter 11 dígitos numéricos.")
+        elif not cpf.isnumeric():
+            print("Campo deve conter apenas dígitos numéricos.")
+        elif cpf_cadastrado:
+            print(f"O CPF '{cpf}' já está cadastrado.")
 
-    while cpf_cadastrado:
-        print(f"O CPF '{cpf}' já está cadastrado.")
         cpf = str(input("CPF: "))
 
 def formatarSenha(senha):
     while len(senha) < 5:
-        if senha == "":
-            print("Campo obrigatório!")
-        else:
-            print("A senha deve ter, no mínimo, 8 caracteres!")
+        if senha == "" or len(senha) < 5:
+            print("Este campo é obrigatório e deve conter no mínimo 5 caracteres!")
+
         senha = str(input("Digite seu senha: "))
     
 def formatarEmail(email):
     while email == "":
         print("Campo obrigatório!")
+        
         email = str(input('E-mail: '))
 
 def formatarTelefone(telefone):
     while telefone == "":
         print("Campo obrigatório!")
+        
         telefone = str(input('Telefone: '))
 
 def formatarApartamento(apartamento):
     while apartamento == "":
         print("Campo obrigatório!")
+        
         apartamento = str(input('Apartamento: '))

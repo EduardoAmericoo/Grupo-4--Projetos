@@ -17,15 +17,15 @@ def menuPrincipal():
 
 def choiceLogin():  
     menuPrincipal()
-    opc = int(input("Digite uma opção: "))
+    opc = str(input("Digite uma opção: "))
     
     match(opc):
-        case 1:
+        case "1":
             while True:
                 os.system('cls')
-                print("="*8)
+                print("="*7)
                 print(" LOGIN ")
-                print("="*8)
+                print("="*7)
 
                 cpf = str(input("CPF: "))
                 senha = str(input("Senha: "))
@@ -60,16 +60,19 @@ def choiceLogin():
                 
                 elif is_adm is True:    
                     # Menu ADM
-                    menu_adm.opcoes_adm()      
+                    menu_adm.choiceAdm()      
                 else:
                     main()
-        case 2:
+        
+        case "2":
             os.system('cls')
             print("="*22)
             print(" CADASTRO DE GESTORES ")
             print("="*22)
             
             nome = str(input("Digite seu nome: "))
+            usuario.formatarNome(nome)
+            
             cpf = str(input("Digite seu cpf: "))
             usuario.formatarCPF(cpf)
                 
@@ -77,10 +80,16 @@ def choiceLogin():
             usuario.formatarSenha(senha)
     
             email = str(input("Digite seu email: "))      
+            usuario.formatarEmail(email)
+            
             telefone = str(input("Digite seu telefone: "))
+            usuario.formatarTelefone(telefone)
+            
             apartamento = str(input("Digite seu apartamento: "))
+            usuario.formatarApartamento(apartamento)
+            
             is_adm = True
-                    
+            
             usuario_cadastrado = usuario.cadastrarUsuario(usuario.obter_proximo_id(), is_adm, nome, cpf, senha, email, telefone, apartamento)
             
             if usuario_cadastrado:
@@ -89,9 +98,9 @@ def choiceLogin():
             time.sleep(2)
             main()
         
-        case 0:
+        case "0":
             print("Saindo...")
-            time.sleep(2)
+            time.sleep(2)     
         
         case __:
             print("Opção inválida! Tente novamente.")
