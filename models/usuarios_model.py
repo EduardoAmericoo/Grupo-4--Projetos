@@ -1,5 +1,4 @@
 import json
-import menu_adm
 
 # Obtém o próximo ID
 def obter_proximo_id():
