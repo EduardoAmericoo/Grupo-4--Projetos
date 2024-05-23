@@ -3,7 +3,7 @@ import json
 import models.usuarios_model as usuario
 import models.reservas_model as reservas
 import models.condominio_model as condominio
-import models.comunicados_model as comunicados
+import models.chat_model as chat
 
 def menuAdm():
     os.system('cls')
@@ -18,7 +18,7 @@ def menuAdm():
     print("5. Chamados") # CRUD Comunicação
     print("6. Chat") # CRUD Comunicação
     print("0. Sair")
-    
+
 def menuGerenciarUsuario():
     os.system('cls')
     print("="*20)
@@ -434,9 +434,30 @@ def choiceAdm():
             print(opc)
             
         # CHAT
-        case "6":  
-            print(opc)
-        
+        case "6": 
+            while True: 
+                os.system('cls')
+                print("="*16)
+                print("      CHAT       ")
+                print("="*16)
+                
+                mensagens = chat.buscarMensagem()
+            
+                for k in mensagens:
+                    print(f"{k['nome_emissor']}: {k['mensagem']}")
+
+                print("-"*20)
+                mensagem = str(input("Enter -> Voltar ao menu\nDigite sua mensagem: "))
+                
+                if mensagem == "":
+                    print("Voltando...")
+                    time.sleep(2)
+                    choiceAdm()
+                    break
+                
+                mensagem_cadastrada = chat.cadastrarMensagem(chat.obter_proximo_id(), "Terry", mensagem)
+
+            
         # SAIR
         case "0":  
             main.main()
