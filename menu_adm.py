@@ -442,7 +442,7 @@ def choiceAdm():
                 print("="*16)
                 
                 mensagens = chat.buscarMensagem()
-            
+                
                 for k in mensagens:
                     print(f"{k['nome_emissor']}: {k['mensagem']}")
 
@@ -455,7 +455,7 @@ def choiceAdm():
                     choiceAdm()
                     break
                 
-                mensagem_cadastrada = chat.cadastrarMensagem(chat.obter_proximo_id(), "Terry", mensagem)
+                chat.cadastrarMensagem(chat.obter_proximo_id(), nome_login, mensagem)
 
             
         # SAIR
@@ -468,4 +468,18 @@ def choiceAdm():
             time.sleep(2)
             choiceAdm()
     
+def main(cpf):
+    global nome_login, id_login, is_adm_login, cpf_login, senha_login, email_login, telefone_login, apartamento_login
+    usuario_logado = usuario.dadosUsuarioAutenticado(cpf)
+    
+    id_login = usuario_logado['id']
+    is_adm_login = usuario_logado['is_adm']
+    nome_login = usuario_logado['nome']
+    cpf_login = usuario_logado['cpf']
+    senha_login = usuario_logado['senha']
+    email_login = usuario_logado['email']
+    telefone_login = usuario_logado['telefone']
+    apartamento_login = usuario_logado['apartamento']
+    
+    choiceAdm()
     

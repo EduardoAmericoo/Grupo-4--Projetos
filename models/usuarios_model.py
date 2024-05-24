@@ -107,6 +107,7 @@ def buscarUsuario():
 # Autenticar Usuários
 def autenticar_usuario(cpf, senha):
     global id_user, is_adm, nome_user, cpf_user, senha_user, email_user, telefone_user, apto_user
+    usuario_autenticado = False
     
     users = buscarUsuario()
     for u in users:
@@ -125,10 +126,14 @@ def autenticar_usuario(cpf, senha):
             apto_user = u['apartamento']
             
             usuario_autenticado = True
-            return usuario_autenticado
-        
-    usuario_autenticado = False
+    
     return usuario_autenticado
+
+def dadosUsuarioAutenticado(cpf):
+    users = buscarUsuario()
+    for u in users:
+        if cpf == u['cpf']:
+            return u
 
 # FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
 def formatarADM(is_adm):

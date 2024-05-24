@@ -60,9 +60,8 @@ def choiceLogin():
                 
                 elif is_adm is True:    
                     # Menu ADM
-                    menu_adm.choiceAdm()      
-                else:
-                    main()
+                    menu_adm.main(cpf)
+
         
         case "2":
             os.system('cls')
