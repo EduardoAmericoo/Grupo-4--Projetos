@@ -1,8 +1,6 @@
 import json
 from datetime import datetime
 import os
-
-# Limpa a tela (compatível com Windows e Unix)
 os.system('cls')
 
 areas_comuns = ["Piscina", "Quadra", "Churrasqueira", "Salão de Festas"]
