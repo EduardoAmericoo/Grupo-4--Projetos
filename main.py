@@ -56,7 +56,7 @@ def choiceLogin():
             
                 if is_adm is False:
                     # Menu morador
-                    menu_morador.opcoes_morador()     
+                    menu_morador.opcoes_morador()   
                 
                 elif is_adm is True:    
                     # Menu ADM

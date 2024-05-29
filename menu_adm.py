@@ -460,7 +460,7 @@ def choiceAdm():
             
         # SAIR
         case "0":  
-            main.main()
+            exit()
             
         # OPCÃO INVÁLIDA
         case __:
