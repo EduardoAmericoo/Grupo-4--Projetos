@@ -51,7 +51,7 @@ def atualizarUsuario(user_to_update):
     
     users = buscarUsuario()
     for c in users:
-        if user_to_update == c['nome'].upper():
+        if user_to_update == c['cpf'].upper():
             c['nome'] = str(input("Novo nome: "))
                     
             c['senha'] = str(input("Nova senha: "))

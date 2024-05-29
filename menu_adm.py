@@ -188,11 +188,11 @@ def choiceAdm():
                     os.system('cls')
                     usuarios = usuario.buscarUsuario()
                     for u in usuarios:
-                        print(f"{u['id']} - {u['nome']}")
+                        print(f"{u['cpf']} - {u['nome']}")
                         
                     while True:
                         print("-"*20)
-                        user_to_update = str(input("Enter -> Voltar ao menu\nUsuário para atualizar: ")).upper()
+                        user_to_update = str(input("Enter -> Voltar ao menu\nUsuário para atualizar[CPF]: ")).upper()
                         print("-"*20)
                         
                         if user_to_update == "":

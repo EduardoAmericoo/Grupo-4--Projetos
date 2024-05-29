@@ -36,25 +36,11 @@ def opcoes_morador():
                 #LISTAR INFORMAÇÕES
                 case '1':
                     os.system('cls')
-                    while True:
-                        usuario_encontrado = False
-                        print("-"*18)
-                        
-                        nome = str(input('Enter -> Voltar ao menu\nInsira o seu nome: ')).upper()
-                        print("-"*18)
-                        
-
+                    while True:                        
                         buscarUsuario = usuario.buscarUsuario()
-                        if nome == "":
-                            os.system('cls')
-                            print('Voltando ao menu...')
-                            time.sleep(1)
-                            opcoes_morador()
-                            break
-                    
 
                         for c in buscarUsuario:
-                            if nome in c['nome'].upper():
+                            if cpf_login in c['cpf'].upper():
                                 os.system('cls')
                                 
                                 print("Dados do usuário:")
@@ -64,20 +50,15 @@ def opcoes_morador():
                                 print(f"ADM: {c['is_adm']} ")
                                 print(f"Telefone: {c['telefone']} ")
                                 print(f"Apartamento: {c['apartamento']} ")
-                                usuario_encontrado = True
-                           
-                            if not usuario_encontrado:
-                             msg_alerta = f"Alerta: Usuário {nome} não existe. Você inseriu o seu nome errado, tente novamente!" 
-                             print(msg_alerta)
-                        
-                        opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
-                            
-                        while opcao not in "SN":
+                
+                        opcao = str(input("Digite enter para sair: ")).upper()
+
+                        while opcao not in "":
                             print("Opção inválida! Tente novamente.")
                                 
-                            opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
+                            opcao = str(input("Digite enter para sair: ")).upper()
                             
-                        if opcao == "N":
+                        if opcao == "":
                             print('Voltando ao menu...')
                             time.sleep(1)
                             opcoes_morador()
@@ -87,29 +68,19 @@ def opcoes_morador():
                 case '2':
                     os.system('cls')
                     while True:
-                        print("-"*20)
-                        user_to_update = str(input("Enter -> Voltar ao menu\nInforme o seu nome: ")).upper()
-                        print("-"*20)
-                        
-                        if user_to_update == "":
-                            os.system('cls')
-                            print('Voltando ao menu...')
-                            time.sleep(1)
-                            opcoes_morador()
-                            break
-                        
-                        user_updated = usuario.atualizarUsuario(user_to_update)
+            
+                        user_updated = usuario.atualizarUsuario(cpf_login)
                         
                         if user_updated:
                             os.system('cls')
-                            print(f"Usuário {user_to_update} atualizado com sucesso!") 
+                            print(f"Usuário propietário do cpf; {cpf_login} atualizado com sucesso!") 
                             time.sleep(2)
                             opcoes_morador()
                             break
 
                         elif not user_updated:
                             os.system('cls')
-                            print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou Contate o seu gestor.")
+                            print(f"Alerta: Usuário proprietário do cpf:{cpf_login}, não existe. Tente novamente ou Contate o seu gestor.")
                             time.sleep(2) 
        
         # RESERVA DE ÁREAS COMUNS
@@ -126,7 +97,8 @@ def opcoes_morador():
             print('Chat')
         #SAIR
         case '0':
-            main.main()
+            print("Saindo...")
+            time.sleep(2) 
 
         #OPÇÃO INVÁLIDA
         case __:
