@@ -11,7 +11,6 @@ def obter_proximo_id():
         ids = [int(row['id']) for row in data]
         return max(ids) + 1 if ids else 1
 
-# Cadastrar Usuário
 def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento):
     file = 'database/usuarios.json'
     
@@ -43,7 +42,6 @@ def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento)
     
     return usuario_cadastrado
 
-# Atualizar Usuários
 def atualizarUsuario(user_to_update):
     file = 'database/usuarios.json'
     user_updated = False
@@ -99,7 +97,6 @@ def atualizarUsuarioMorador(user_to_update):
     
     return user_updated
     
-# Deletar Usuários
 def deletarUsuario(user_to_delete):
     file = 'database/usuarios.json'
     user_deleted = False
@@ -120,7 +117,6 @@ def deletarUsuario(user_to_delete):
     
     return user_deleted
 
-# Buscar Usuários
 def buscarUsuario():
     file = 'database/usuarios.json'
     
@@ -166,7 +162,6 @@ def dadosUsuarioAutenticado(cpf):
         if cpf == u['cpf']:
             return u
 
-# FORMATAÇÕES DE CPF, SENHA E ADMNINISTRAÇÃO PARA CADASTRO E UPDATE DE USUÁRIOS 
 def formatarADM(is_adm):
 
     while is_adm not in "SN":
