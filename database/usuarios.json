@@ -12,12 +12,12 @@
     {
         "id": 3,
         "is_adm": false,
-        "nome": "eufra",
+        "nome": "",
         "cpf": "122222",
-        "senha": "123",
-        "email": "eufra@gmail.com",
-        "telefone": "123",
-        "apartamento": "123"
+        "senha": "",
+        "email": "",
+        "telefone": "",
+        "apartamento": ""
     },
     {
         "id": 4,

@@ -1,5 +1,7 @@
-import os, time, main
+import os, time
 import models.usuarios_model as usuario
+import models.reservas_model as reservas
+import models.chat_model as chat
 
 def menu_morador():
     os.system('cls')
@@ -9,96 +11,92 @@ def menu_morador():
     
     print("1. Usuário")
     print("2. Reserva de áreas comuns")
-    print("3. Avisos e Notificações")
-    print("4. Chamados")
-    print("5. Chat")
+    print("3. Chat")
     print("0. Sair")
-
-def menu_usuario():
-    print('='*20)
-    print('Menu Usuário')
-    print('='*20)
-
-    print('1. Listar informações')
-    print('2. Editar informações')
 
 def opcoes_morador():
     menu_morador()
-    print("Insira a opção escolhida: ")
-    menu_morador()
-    opc = str(input("Insira a opção escolhida: "))
+    opc = str(input("Digite uma opção: "))
+    
     match(opc):
-        #MENU DO USUÁRIO
+    
+        # EXIBIR USUÁRIO E ATUALIZAR
         case '1':
-            menu_usuario()
-            escolha = str(input('Digite uma opção '))
-            match(escolha):
-                #LISTAR INFORMAÇÕES
-                case '1':
-                    os.system('cls')
-                    while True:                        
-                        buscarUsuario = usuario.buscarUsuario()
+            os.system('cls')
 
-                        for c in buscarUsuario:
-                            if cpf_login in c['cpf'].upper():
-                                os.system('cls')
-                                
-                                print("Dados do usuário:")
-                                print("-----------------")
-                                print(f"Nome: {c['nome']} ")
-                                print(f"Email: {c['email']} ")
-                                print(f"ADM: {c['is_adm']} ")
-                                print(f"Telefone: {c['telefone']} ")
-                                print(f"Apartamento: {c['apartamento']} ")
-                
-                        opcao = str(input("Digite enter para sair: ")).upper()
+            while True:                        
+                buscarUsuario = usuario.buscarUsuario()
 
-                        while opcao not in "":
-                            print("Opção inválida! Tente novamente.")
-                                
-                            opcao = str(input("Digite enter para sair: ")).upper()
-                            
-                        if opcao == "":
-                            print('Voltando ao menu...')
-                            time.sleep(1)
-                            opcoes_morador()
-                            break
-                
-                #Editar Informações
-                case '2':
-                    os.system('cls')
-                    while True:
-            
-                        user_updated = usuario.atualizarUsuario(cpf_login)
+                for c in buscarUsuario:
+                    if cpf_login in c['cpf'].upper():
+                        os.system('cls')
                         
-                        if user_updated:
-                            os.system('cls')
-                            print(f"Usuário propietário do cpf; {cpf_login} atualizado com sucesso!") 
-                            time.sleep(2)
-                            opcoes_morador()
-                            break
+                        print("Dados do usuário:")
+                        print("-----------------")
+                        print(f"Nome: {c['nome']} ")
+                        print(f"Nome: {c['cpf']} ")
+                        print(f"Email: {c['email']} ")
+                        print(f"ADM: {c['is_adm']} ")
+                        print(f"Telefone: {c['telefone']} ")
+                        print(f"Apartamento: {c['apartamento']} ")
+                
+                opcao = str(input("\nDeseja atualizar o usuario? [S/N]")).upper()
+                    
+                while opcao not in "SN": 
+                    opcao = str(input("\nOpção inválida. Deseja atualizar o usuario? [S/N]")).upper()
 
-                        elif not user_updated:
-                            os.system('cls')
-                            print(f"Alerta: Usuário proprietário do cpf:{cpf_login}, não existe. Tente novamente ou Contate o seu gestor.")
-                            time.sleep(2) 
+                    if opcao == "S":
+                        break
+
+                if opcao == "N":
+                    print('Voltando ao menu...')
+                    time.sleep(1)
+                    opcoes_morador()
+                    break
+
+                elif opcao == "S":
+                    user_updated = usuario.atualizarUsuarioMorador(cpf_login)
+                    
+                    if user_updated:
+                        os.system('cls')
+                        print(f"Usuário atualizado com sucesso!") 
+                        time.sleep(2)
+                        opcoes_morador()
+                        break
        
-        # RESERVA DE ÁREAS COMUNS
+        # RESERVA FAZER
         case '2':
             print('Reserva de Áreas comuns')
-        # AVISOS E COMUNICAÇÕES
+
+        # CHAT
         case '3':
-            print('Avisos e Notificações')
-        # CHAMADOS
-        case '4':
-            print('chamados')
-        #CHAT
-        case '5':
-            print('Chat')
+            while True: 
+                os.system('cls')
+                print("="*16)
+                print("      CHAT       ")
+                print("="*16)
+                
+                mensagens = chat.buscarMensagem()
+                
+                for k in mensagens:
+                    print(f"{k['nome_emissor']}: {k['mensagem']}")
+
+                print("-"*20)
+                mensagem = str(input("Enter -> Voltar ao menu\nDigite sua mensagem: "))
+                
+                if mensagem == "":
+                    print("Voltando...")
+                    time.sleep(2)
+                    opcoes_morador()
+                    break
+                
+                chat.cadastrarMensagem(chat.obter_proximo_id(), nome_login, mensagem)
+
         #SAIR
         case '0':
             print("Saindo...")
             time.sleep(2) 
+            exit()
 
         #OPÇÃO INVÁLIDA
         case __:

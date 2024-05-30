@@ -1,5 +1,4 @@
-import os, time, main
-import json
+import os, time
 import models.usuarios_model as usuario
 import models.reservas_model as reservas
 import models.condominio_model as condominio
@@ -11,12 +10,10 @@ def menuAdm():
     print(" MENU DE ADMINISTRADOR ")
     print("="*23)
     
-    print("1. Gerenciar usuários") # CRUD USUÁRIOS
-    print("2. Gerenciar condomínios") # CRUD Condomínios
-    print("3. Gerenciar reservas") # CRUD Reservas
-    print("4. Avisos e Notificações") # CRUD Comunicação
-    print("5. Chamados") # CRUD Comunicação
-    print("6. Chat") # CRUD Comunicação
+    print("1. Gerenciar usuários") 
+    print("2. Gerenciar condomínios") 
+    print("3. Gerenciar reservas") 
+    print("4. Chat") 
     print("0. Sair")
 
 def menuGerenciarUsuario():
@@ -42,43 +39,18 @@ def menuGerenciarCondominio():
     print("3. Atualizar condomínio")  
     print("4. Deletar condomínio") 
     print("0. Voltar")
-    
-def menuAvisosNotificacoes():
-    os.system('cls')
-    print("="*21)
-    print(" GERENCIAR CONDOMÍNIO ")
-    print("="*21)
-
-    print("1. Cadastrar condomínio") 
-    print("2. Listar condomínio") 
-    print("3. Atualizar condomínio")  
-    print("4. Deletar condomínio") 
-    print("0. Voltar")
- 
-def menuChamados():
-    os.system('cls')
-    print("="*21)
-    print(" GERENCIAR CONDOMÍNIO ")
-    print("="*21)
-
-    print("1. Cadastrar condomínio") 
-    print("2. Listar condomínio") 
-    print("3. Atualizar condomínio")  
-    print("4. Deletar condomínio") 
-    print("0. Voltar")
-
-def menuChat():
-    os.system('cls')
-    print("="*21)
-    print(" GERENCIAR CONDOMÍNIO ")
-    print("="*21)
-
-    print("1. Cadastrar condomínio") 
-    print("2. Listar condomínio") 
-    print("3. Atualizar condomínio")  
-    print("4. Deletar condomínio") 
-    print("0. Voltar")
       
+def menuGerenciarReservas():
+    os.system('cls')
+    print("="*21)
+    print(" GERENCIAR RESERVAS ")
+    print("="*21)
+
+    print("1. Fazer Reserva")
+    print("2. Listar Reservas")
+    print("3. Cancelar Reserva")
+    print("0. Voltar") 
+
 def choiceAdm():
     menuAdm()
     opc = str(input("Digite a opção: "))
@@ -423,18 +395,133 @@ def choiceAdm():
                         
         # GERENCIAR RESERVAS
         case "3":     
-            print(opc)
+            menuGerenciarReservas()
+            opcao = str(input("Digite a opção: "))
+
+            areas_comuns = ["Piscina", "Quadra", "Churrasqueira", "Salão de Festas"]
             
-        # AVISOS E NOTIFICAÇÕES
-        case "4":  
-            print(opc)
-            
-        # CHAMADOS
-        case "5":  
-            print(opc)
-            
+            match(opcao):
+                case '1': # Fazer reserva
+                    while True:
+                        os.system('cls')
+                        print("Áreas Comuns Disponíveis para Reserva: ")
+                        print("1. Piscina")
+                        print("2. Quadra")
+                        print("3. Churrasqueira")
+                        print("4. Salão de festas")
+                        print("V. Voltar para o Menu Principal")
+
+                        escolha = input("Escolha a área que deseja reservar (ou 'V' para voltar): ")
+
+                        if escolha.upper() == 'V':
+                            time.sleep(1)
+                            choiceAdm()
+                        
+                        if not escolha.isdigit() or int(escolha) < 1 or int(escolha) > len(areas_comuns):
+                            print("Escolha inválida. Tente novamente.")
+                            continue
+                        
+                        area_escolhida = areas_comuns[int(escolha) - 1]
+                        print(f"Área escolhida: {area_escolhida}")
+                        
+                        while True:
+                            data = input("Insira a data da reserva (dd/mm/aaaa): ")
+                            if not reservas.validarData(data):
+                                print("Data inválida ou data já passou. Tente novamente.")
+                                continue
+
+                            horario_inicio = input("Insira o horário de início da reserva (hh:mm): ")
+                            if not reservas.validarHorario(horario_inicio):
+                                print("Horário de início inválido. Tente novamente.")
+                                continue
+
+                            horario_fim = input("Insira o horário de término da reserva (hh:mm): ")
+                            if not reservas.validarHorario(horario_fim):
+                                print("Horário de término inválido. Tente novamente.")
+                                continue
+                            
+                            if horario_inicio >= horario_fim:
+                                print("O horário de término deve ser após o horário de início. Tente novamente.")
+                                continue
+                        
+                            reserva_salva = reservas.fazerReserva(area_escolhida, data, horario_inicio, horario_fim)
+
+                            if reserva_salva:
+                                time.sleep(1)
+                                choiceAdm()
+                                break                         
+
+                case '2': # Listar reservas
+                    while True:
+                        os.system('cls')
+                        reservas.listarReservas()
+                        lista = reservas.buscarReservas()
+
+                        if lista == []:
+                            os.system('cls')
+                            print("Não existe nenhuma reserva agendada. Faça uma reserva!")
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+
+                        opc = input("Aperte enter para voltar ao menu: ")
+                        while opc not in "":
+                            opc = input("Aperte enter para voltar ao menu: ")
+
+                            if opc == "":
+                                break
+                            
+                        if opc == "":
+                            os.system('cls')
+                            print("Voltando...")
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+
+                case '3': # Cancelar reservas
+                    while True:
+                        os.system('cls')
+                        reservas.listarReservas()
+                        lista = reservas.buscarReservas() 
+                        reserva_cancelada = False
+                        
+                        if lista == []:
+                            os.system('cls')
+                            print("Não existe nenhuma reserva agendada. Faça uma reserva!")
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+                        
+                        reserva_id = input("Enter -> Voltar para o menu\nInsira o ID da reserva que deseja cancelar: ")
+
+                        if reserva_id.isdigit() and 0 <= int(reserva_id) < len(lista):
+                            reserva_cancelada = reservas.cancelarReserva(reserva_id, lista)
+                        elif reserva_id == "":
+                            os.system('cls')
+                            print("Voltando...")
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+                        else:
+                            print("Número da reserva inválido.")
+                            time.sleep(1)
+                        
+                        if reserva_cancelada:
+                            os.system('cls')
+                            print("Reserva cancelada com sucesso!")
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+
+                case '0': # Voltando
+                    time.sleep(1)
+                    choiceAdm()
+                
+                case __: # Opcão incorreta
+                    print('Opção inválida! Por favor, tente novamente.')
+                    choiceAdm()
         # CHAT
-        case "6": 
+        case "4":  
             while True: 
                 os.system('cls')
                 print("="*16)
@@ -456,10 +543,11 @@ def choiceAdm():
                     break
                 
                 chat.cadastrarMensagem(chat.obter_proximo_id(), nome_login, mensagem)
-
             
         # SAIR
         case "0":  
+            print("Saindo...")
+            time.sleep(2)
             exit()
             
         # OPCÃO INVÁLIDA

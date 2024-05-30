@@ -72,6 +72,32 @@ def atualizarUsuario(user_to_update):
             break
     
     return user_updated
+
+def atualizarUsuarioMorador(user_to_update):
+    file = 'database/usuarios.json'
+    user_updated = False
+    user = {}
+    
+    users = buscarUsuario()
+    for c in users:
+        if user_to_update == c['cpf'].upper():
+            c['nome'] = str(input("Novo nome: "))
+                    
+            c['senha'] = str(input("Nova senha: "))
+            formatarSenha(c['senha'])
+                       
+            c['email'] = str(input("Novo email: "))      
+            c['telefone'] = str(input("Novo seu telefone: "))
+            c['apartamento'] = str(input("Novo seu apartamento: "))
+        
+            # escrever em arquivos json
+            with open(file, 'w', encoding='utf8') as arquivo:
+                arquivo.write(json.dumps(users, indent=4))
+        
+                user_updated = True
+            break
+    
+    return user_updated
     
 # Deletar Usuários
 def deletarUsuario(user_to_delete):
