@@ -1,6 +1,5 @@
 import json
 
-# Obtém o próximo ID
 def obter_proximo_id():
     file = 'database/usuarios.json'
     
