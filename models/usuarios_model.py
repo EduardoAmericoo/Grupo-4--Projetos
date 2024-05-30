@@ -136,7 +136,6 @@ def listar_informacoes_usuario(data, id):
             return usuario
     return None
 
-# Autenticar Usuários
 def autenticar_usuario(cpf, senha):
     global id_user, is_adm, nome_user, cpf_user, senha_user, email_user, telefone_user, apto_user
     usuario_autenticado = False
