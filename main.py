@@ -5,6 +5,20 @@ import models.usuarios_model as usuario
 import menu_adm
 import menu_morador
 
+def formatMensagemError(msg):
+    tam = len(msg) + 2 
+    
+    print("\033[1;31m=\033[m"*tam)
+    print(f"\033[1;31m {msg} \033[m")
+    print("\033[1;31m=\033[m"*tam)
+
+def formatMensagemValid(msg):
+    tam = len(msg) + 2 
+    
+    print("\033[1;32m=\033[m"*tam)
+    print(f"\033[1;32m {msg} \033[m")
+    print("\033[1;32m=\033[m"*tam)
+    
 def menuPrincipal():
     os.system('cls')
     print("="*25)
@@ -36,9 +50,8 @@ def choiceLogin():
                 
                 if usuario_autenticado == False:
                     os.system('cls')
-                    print("="*34)
-                    print(" ERRO NA AUTENTICAÇÃO DO USUÁRIO ")
-                    print("="*34)
+                    msg = "Erro na autenticação do usuário!"
+                    formatMensagemError(msg)
                     time.sleep(2)
                 else:
                     break
@@ -46,9 +59,8 @@ def choiceLogin():
             # Verifica se o usuário é um morador ou adm
             if usuario_autenticado:
                 os.system('cls')
-                print("="*34)
-                print(" USUÁRIO AUTENTICADO COM SUCESSO ")
-                print("="*34)
+                msg = "Usuário autenticado com sucesso!"
+                formatMensagemValid(msg)
                 time.sleep(2)
 
 

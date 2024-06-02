@@ -1,4 +1,5 @@
 import os, time
+import main as m
 import models.usuarios_model as usuario
 import models.reservas_model as reservas
 import models.condominio_model as condominio
@@ -48,7 +49,8 @@ def menuGerenciarReservas():
 
     print("1. Fazer Reserva")
     print("2. Listar Reservas")
-    print("3. Cancelar Reserva")
+    print("3. Alterar Reserva")
+    print("4. Cancelar Reserva")
     print("0. Voltar") 
 
 def choiceAdm():
@@ -94,30 +96,27 @@ def choiceAdm():
                     if usuario_cadastrado:
                         os.system('cls')
                         msg = f"Usuário {nome.upper()} cadastrado com sucesso!"
-                        
-                        print("="*len(msg))
-                        print(msg)
-                        print("="*len(msg))
+                        m.formatMensagemValid(msg)
                     
                     time.sleep(2)
                     choiceAdm()
                                  
                 # listar usuário
                 case "2":
-                    os.system('cls')
-                    usuarios = usuario.buscarUsuario()
-                    for u in usuarios:
-                        print(f"{u['id']} - {u['nome']}")
-        
                     while True:
+                        os.system('cls')
+                        usuarios = usuario.buscarUsuario()
+                        for u in usuarios:
+                            print(f"{u['id']} - {u['nome']}")
+                            
                         usuario_encontrado = False
-                        print("-"*18)
-                        nome = str(input('Enter -> Voltar ao menu\nUsuário a ser buscado: ')).upper()
-                        print("-"*18)
                         
+                        print("-"*18)
+                        id = str(input('Enter -> voltar ao menu\nUsuário a ser buscado: '))
+                        print("-"*18)  
 
                         buscarUsuario = usuario.buscarUsuario()
-                        if nome == "":
+                        if id == "":
                             os.system('cls')
                             print('Voltando ao menu...')
                             time.sleep(1)
@@ -125,7 +124,7 @@ def choiceAdm():
                             break
                          
                         for c in buscarUsuario:
-                            if nome in c['nome'].upper():
+                            if int(id) == c['id']:
                                 os.system('cls')
                                 
                                 print("Dados do usuário:")
@@ -138,7 +137,7 @@ def choiceAdm():
                                 usuario_encontrado = True
                         
                         if not usuario_encontrado:
-                            msg_alerta = f"Alerta: Usuário {nome} não existe. Tente novamente ou cadastre esse usuário." 
+                            msg_alerta = f"Alerta: Usuário {id} não existe. Tente novamente ou cadastre esse usuário." 
                             print(msg_alerta)
 
                         opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
@@ -157,14 +156,14 @@ def choiceAdm():
                             
                 # atualizar usuário    
                 case "3":
-                    os.system('cls')
-                    usuarios = usuario.buscarUsuario()
-                    for u in usuarios:
-                        print(f"{u['cpf']} - {u['nome']}")
-                        
                     while True:
+                        os.system('cls')
+                        usuarios = usuario.buscarUsuario()
+                        for u in usuarios:
+                            print(f"{u['id']} - {u['nome']}")
+                            
                         print("-"*20)
-                        user_to_update = str(input("Enter -> Voltar ao menu\nUsuário para atualizar[CPF]: ")).upper()
+                        user_to_update = str(input("Enter -> voltar ao menu\nUsuário para atualizar[id]: "))
                         print("-"*20)
                         
                         if user_to_update == "":
@@ -174,33 +173,35 @@ def choiceAdm():
                             choiceAdm()
                             break
                         
-                        user_updated = usuario.atualizarUsuario(user_to_update)
+                        user_updated = usuario.atualizarUsuario(int(user_to_update))
                         
                         if user_updated:
                             os.system('cls')
-                            print(f"Usuário {user_to_update} atualizado com sucesso!") 
+                            msg = f"Usuário {user_to_update} atualizado com sucesso!"
+                            m.formatMensagemValid(msg) 
                             time.sleep(2)
                             choiceAdm()
                             break
 
                         elif not user_updated:
                             os.system('cls')
-                            print(f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário.")
+                            msg = f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário."
+                            m.formatMensagemError(msg)
                             time.sleep(2) 
                     
                 # deletar usuário
                 case "4": 
-                    os.system('cls')
-                    usuarios = usuario.buscarUsuario()
-                    for u in usuarios:
-                        print(f"{u['id']} - {u['nome']}")
-                        
                     while True:
+                        os.system('cls')
+                        usuarios = usuario.buscarUsuario()
+                        for u in usuarios:
+                            print(f"{u['id']} - {u['nome']}")    
+                
                         print("-"*20)
-                        user_to_delete = str(input("Enter -> Voltar ao menu\nUsuário para deletar: ")).upper()
+                        user_to_delete = str(input("Enter -> voltar ao menu\nUsuário para deletar: "))
                         print("-"*20)
                         
-                        if user_to_update == "":
+                        if user_to_delete == "":
                             os.system('cls')
                             print('Voltando ao menu...')
                             time.sleep(1)
@@ -208,18 +209,20 @@ def choiceAdm():
                             break
                         
                         # verifica se usuario existe
-                        user_deleted = usuario.deletarUsuario(user_to_delete)
+                        user_deleted = usuario.deletarUsuario(int(user_to_delete))
                         
                         if user_deleted:
                             os.system('cls')
-                            print(f"Usuário {user_to_delete} deletado com sucesso!") 
+                            msg = f"Usuário {user_to_delete} deletado com sucesso!"
+                            m.formatMensagemValid(msg) 
                             time.sleep(2)
                             choiceAdm()
                             break
 
                         elif not user_deleted:
                             os.system('cls')
-                            print(f"Alerta: Usuário {user_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse usuário.")
+                            msg = f"Alerta: Usuário {user_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse usuário."
+                            m.formatMensagemError(msg)
                             time.sleep(2) 
                 
                 # voltar
@@ -229,7 +232,10 @@ def choiceAdm():
                 
                 # opcão incorreta
                 case __:
-                    print('Opção inválida! Por favor, tente novamente.')
+                    os.system('cls')
+                    msg = 'Opção inválida! Por favor, tente novamente.'
+                    m.formatMensagemError(msg)
+                    time.sleep(1)
                     choiceAdm()
         
         # GERENCIAR CONDOMÍNIOS
@@ -240,6 +246,10 @@ def choiceAdm():
             match(opcao):
                 # cadastrar condomínio
                 case "1":
+                    os.system('cls')
+                    print("Preencha as informações requeridas, acerca do condomínio:")
+                    print("-"*60)
+
                     nome_cond = str(input("Nome do condomínio: "))
                     rua = str(input("Rua: "))
                     bairro = str(input("Bairro: "))
@@ -257,25 +267,26 @@ def choiceAdm():
                     condominio_cadastrado = condominio.cadastrarCondominio(condominio.obter_proximo_id(), nome_cond, endereco, cep, qntd_andares, qntd_apto)
                     
                     if condominio_cadastrado:
-                        print(f"Condomínio {nome_cond.upper()} / CEP: {cep} cadastrado com sucesso!")
-                    
+                        os.system('cls')
+                        msg = f"Condomínio {nome_cond.upper()} / CEP: {cep} cadastrado com sucesso!"
+                        m.formatMensagemValid(msg)
+
                     time.sleep(2)
                     choiceAdm()
                         
                 # listar condomínios
                 case "2":
-                    os.system('cls')
-                    condominios = condominio.buscarCondominio()
-                    for c in condominios:
-                        print(f"{c['id']} - {c['nome']}")
-        
                     while True:
+                        os.system('cls')
+                        condominios = condominio.buscarCondominio()
+                        for c in condominios:
+                            print(f"{c['id']} - {c['nome']}")
+        
                         condominio_encontrado = False
                         print("-"*18)
-                        nome = str(input('Enter -> Voltar ao menu\nCondominio para buscar: ')).upper()
+                        nome = str(input('Enter -> Voltar ao menu\nCondominio para buscar: '))
                         print("-"*18)
                         
-
                         buscarCondominio = condominio.buscarCondominio()
                         if nome == "":
                             os.system('cls')
@@ -285,7 +296,7 @@ def choiceAdm():
                             break
                          
                         for c in buscarCondominio:
-                            if nome in c['nome'].upper():
+                            if int(nome) == c['id']:
                                 os.system('cls')
                                 
                                 print("Dados do usuário:")
@@ -317,14 +328,14 @@ def choiceAdm():
                 
                 # atualizar condomínio    
                 case "3":
-                    os.system('cls')
-                    condominios = condominio.buscarCondominio()
-                    for c in condominios:
-                        print(f"{c['id']} - {c['nome']}")
-                        
                     while True:
+                        os.system('cls')
+                        condominios = condominio.buscarCondominio()
+                        for c in condominios:
+                            print(f"{c['id']} - {c['nome']}")
+                        
                         print("-"*20)
-                        cond_to_update = str(input("Enter -> Voltar ao menu\Condomínio para atualizar: ")).upper()
+                        cond_to_update = str(input("Enter -> Voltar ao menu\nCondomínio para atualizar: "))
                         print("-"*20)
                         
                         if cond_to_update == "":
@@ -334,18 +345,20 @@ def choiceAdm():
                             choiceAdm()
                             break
                         
-                        cond_updated = condominio.atualizarCondominio(cond_to_update)
+                        cond_updated = condominio.atualizarCondominio(int(cond_to_update))
                         
                         if cond_updated:
                             os.system('cls')
-                            print(f"Condomínio {cond_to_update} atualizado com sucesso!") 
+                            msg = f"Condomínio {cond_to_update} atualizado com sucesso!"
+                            m.formatMensagemValid(msg)
                             time.sleep(2)
                             choiceAdm()
                             break
 
                         elif not cond_updated:
                             os.system('cls')
-                            print(f"Alerta: Condomínio {cond_to_update} não existe. Tente novamente ou cadastre esse condomínio.")
+                            msg = f"Alerta: Condomínio {cond_to_update} não existe. Tente novamente ou cadastre esse condomínio."
+                            m.formatMensagemError(msg)
                             time.sleep(2) 
                     
                 # deletar condomínio
@@ -357,7 +370,7 @@ def choiceAdm():
                         
                     while True:
                         print("-"*20)
-                        cond_to_delete = str(input("Enter -> Voltar ao menu\nCondomínio para deletar: ")).upper()
+                        cond_to_delete = str(input("Enter -> Voltar ao menu\nCondomínio para deletar: "))
                         print("-"*20)
                         
                         if cond_to_delete == "":
@@ -368,18 +381,20 @@ def choiceAdm():
                             break
                         
                         # verifica se condomínio existe
-                        cond_deleted = condominio.deletarCondominio(cond_to_delete)
+                        cond_deleted = condominio.deletarCondominio(int(cond_to_delete))
                         
                         if cond_deleted:
                             os.system('cls')
-                            print(f"Condomínio {cond_to_delete} deletado com sucesso!") 
+                            msg = f"Condomínio {cond_to_delete} deletado com sucesso!"
+                            m.formatMensagemValid(msg) 
                             time.sleep(2)
                             choiceAdm()
                             break
 
                         elif not cond_deleted:
                             os.system('cls')
-                            print(f"Alerta: Condomínio {cond_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse condomínio.")
+                            msg = f"Alerta: Condomínio {cond_to_delete} não existe ou já foi deletado. Tente novamente ou cadastre esse condomínio."
+                            m.formatMensagemError(msg)
                             time.sleep(2) 
                 
                 # voltar
@@ -389,7 +404,9 @@ def choiceAdm():
                     
                 # opção incorreta 
                 case __:
-                    print("Opção inválida!")
+                    os.system('cls')
+                    msg = "Opção inválida!"
+                    m.formatMensagemError(msg)
                     time.sleep(2)
                     choiceAdm()
                         
@@ -414,37 +431,39 @@ def choiceAdm():
                         escolha = input("Escolha a área que deseja reservar (ou 'V' para voltar): ")
 
                         if escolha.upper() == 'V':
+                            print("Voltando...")
                             time.sleep(1)
                             choiceAdm()
                         
                         if not escolha.isdigit() or int(escolha) < 1 or int(escolha) > len(areas_comuns):
-                            print("Escolha inválida. Tente novamente.")
+                            print("\033[1;31mEscolha inválida. Tente novamente.\033[m")
                             continue
                         
+                        os.system('cls')
                         area_escolhida = areas_comuns[int(escolha) - 1]
                         print(f"Área escolhida: {area_escolhida}")
                         
                         while True:
                             data = input("Insira a data da reserva (dd/mm/aaaa): ")
                             if not reservas.validarData(data):
-                                print("Data inválida ou data já passou. Tente novamente.")
+                                print("\033[1;31mData inválida ou data já passou. Tente novamente.\033[m")
                                 continue
 
                             horario_inicio = input("Insira o horário de início da reserva (hh:mm): ")
                             if not reservas.validarHorario(horario_inicio):
-                                print("Horário de início inválido. Tente novamente.")
+                                print("\033[1;31mHorário de início inválido. Tente novamente.\033[m")
                                 continue
 
                             horario_fim = input("Insira o horário de término da reserva (hh:mm): ")
                             if not reservas.validarHorario(horario_fim):
-                                print("Horário de término inválido. Tente novamente.")
+                                print("\033[1;31mHorário de término inválido. Tente novamente.\033[m")
                                 continue
                             
                             if horario_inicio >= horario_fim:
-                                print("O horário de término deve ser após o horário de início. Tente novamente.")
+                                print("\033[1;31mO horário de término deve ser após o horário de início. Tente novamente.\033[m")
                                 continue
                         
-                            reserva_salva = reservas.fazerReserva(area_escolhida, data, horario_inicio, horario_fim)
+                            reserva_salva = reservas.fazerReserva(reservas.obter_proximo_id(), nome_login, area_escolhida, data, horario_inicio, horario_fim)
 
                             if reserva_salva:
                                 time.sleep(1)
@@ -459,7 +478,7 @@ def choiceAdm():
 
                         if lista == []:
                             os.system('cls')
-                            print("Não existe nenhuma reserva agendada. Faça uma reserva!")
+                            print("\033[1;31mNão existe nenhuma reserva agendada. Faça uma reserva!\033[m")
                             time.sleep(1)
                             choiceAdm()
                             break
@@ -477,8 +496,40 @@ def choiceAdm():
                             time.sleep(1)
                             choiceAdm()
                             break
+                
+                case '3': # alternar reserva
+                    while True:
+                        os.system('cls')
+                        reservas.listarReservas()
+                        
+                        print("-"*20)
+                        id_to_update = str(input("Enter -> Voltar ao menu\Reserva para atualizar: [ID] "))
+                        print("-"*20)
+                        
+                        if id_to_update == "":
+                            os.system('cls')
+                            print('Voltando ao menu...')
+                            time.sleep(1)
+                            choiceAdm()
+                            break
+                        id = int(id_to_update) + 1
+                        reserva_updated = reservas.atualizarReserva(id)
+                        
+                        if reserva_updated:
+                            os.system('cls')
+                            msg = f"Reserva {id_to_update} atualizada com sucesso!"
+                            m.formatMensagemValid(msg)
+                            time.sleep(2)
+                            choiceAdm()
+                            break
 
-                case '3': # Cancelar reservas
+                        elif not reserva_updated:
+                            os.system('cls')
+                            msg = f"Alerta: Reserva {id_to_update} não existe. Tente novamente ou faça uma reserva."
+                            m.formatMensagemError(msg)
+                            time.sleep(2)
+                
+                case '4': # Cancelar reservas
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -487,12 +538,12 @@ def choiceAdm():
                         
                         if lista == []:
                             os.system('cls')
-                            print("Não existe nenhuma reserva agendada. Faça uma reserva!")
+                            print("\033[1;31mNão existe nenhuma reserva agendada. Faça uma reserva!\033[m")
                             time.sleep(1)
                             choiceAdm()
                             break
                         
-                        reserva_id = input("Enter -> Voltar para o menu\nInsira o ID da reserva que deseja cancelar: ")
+                        reserva_id = str(input("Enter -> Voltar para o menu\nInsira o ID da reserva que deseja cancelar: "))
 
                         if reserva_id.isdigit() and 0 <= int(reserva_id) < len(lista):
                             reserva_cancelada = reservas.cancelarReserva(reserva_id, lista)
@@ -503,12 +554,12 @@ def choiceAdm():
                             choiceAdm()
                             break
                         else:
-                            print("Número da reserva inválido.")
+                            print("\033[1;31mNúmero da reserva inválido.\033[m")
                             time.sleep(1)
                         
                         if reserva_cancelada:
                             os.system('cls')
-                            print("Reserva cancelada com sucesso!")
+                            print("\033[1;32mReserva cancelada com sucesso!\033[m")
                             time.sleep(1)
                             choiceAdm()
                             break
@@ -518,8 +569,12 @@ def choiceAdm():
                     choiceAdm()
                 
                 case __: # Opcão incorreta
-                    print('Opção inválida! Por favor, tente novamente.')
+                    os.system('cls')
+                    msg = "Opção inválida!"
+                    m.formatMensagemError(msg)
+                    time.sleep(2)
                     choiceAdm()
+        
         # CHAT
         case "4":  
             while True: 
@@ -552,7 +607,9 @@ def choiceAdm():
             
         # OPCÃO INVÁLIDA
         case __:
-            print("Opção inválida!")
+            os.system('cls')
+            msg = "Opção inválida!"
+            m.formatMensagemError(msg)
             time.sleep(2)
             choiceAdm()
     

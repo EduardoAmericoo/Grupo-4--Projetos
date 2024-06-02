@@ -1,147 +1,22 @@
 [
     {
         "id_mensagem": 1,
-        "nome_emissor": "Terry",
-        "mensagem": "iai Rafael! Tudo bem?"
+        "nome_emissor": "Kerry Muniz Santos",
+        "mensagem": "Oi"
     },
     {
         "id_mensagem": 2,
-        "nome_emissor": "Rafael",
-        "mensagem": "oi, tudo certo e contigo?"
+        "nome_emissor": "Kerry Muniz Santos",
+        "mensagem": "Teste"
     },
     {
         "id_mensagem": 3,
-        "nome_emissor": "Terry",
-        "mensagem": "Baguete"
+        "nome_emissor": "Kerry Muniz Santos",
+        "mensagem": "Teste"
     },
     {
         "id_mensagem": 4,
-        "nome_emissor": "Rafael",
-        "mensagem": "Bagueta tamb\u00e9m"
-    },
-    {
-        "id_mensagem": 5,
-        "nome_emissor": "Terry",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 6,
-        "nome_emissor": "Terry",
-        "mensagem": "Iai pessoal"
-    },
-    {
-        "id_mensagem": 7,
-        "nome_emissor": "Terry",
-        "mensagem": "Tudo bem com voc\u00eas?"
-    },
-    {
-        "id_mensagem": 8,
-        "nome_emissor": "Terry",
-        "mensagem": "ol\u00e1 pessoal "
-    },
-    {
-        "id_mensagem": 9,
-        "nome_emissor": "Terry",
-        "mensagem": "bom dia "
-    },
-    {
-        "id_mensagem": 10,
-        "nome_emissor": "Terry",
-        "mensagem": "ai calica"
-    },
-    {
-        "id_mensagem": 11,
-        "nome_emissor": "Terry",
-        "mensagem": "baguete"
-    },
-    {
-        "id_mensagem": 12,
-        "nome_emissor": "Rafael",
-        "mensagem": "Lucar \u00e9 gay"
-    },
-    {
-        "id_mensagem": 13,
-        "nome_emissor": "Lucas",
-        "mensagem": "teste"
-    },
-    {
-        "id_mensagem": 14,
-        "nome_emissor": "Lucas",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 15,
-        "nome_emissor": "Lucas",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 16,
-        "nome_emissor": "Lucas",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 17,
-        "nome_emissor": "Lucas",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 18,
-        "nome_emissor": "Terry",
-        "mensagem": "terry"
-    },
-    {
-        "id_mensagem": 19,
-        "nome_emissor": "Terry",
-        "mensagem": "teste"
-    },
-    {
-        "id_mensagem": 20,
-        "nome_emissor": "Terry",
-        "mensagem": "ai "
-    },
-    {
-        "id_mensagem": 21,
-        "nome_emissor": "Terry",
-        "mensagem": "oi "
-    },
-    {
-        "id_mensagem": 22,
-        "nome_emissor": "Terry",
-        "mensagem": "ihu"
-    },
-    {
-        "id_mensagem": 23,
-        "nome_emissor": "Terry",
-        "mensagem": "teste"
-    },
-    {
-        "id_mensagem": 24,
-        "nome_emissor": "Terry Damasio Santos",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 25,
-        "nome_emissor": "Terry Damasio Santos",
-        "mensagem": "teste"
-    },
-    {
-        "id_mensagem": 26,
-        "nome_emissor": "terry",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 27,
-        "nome_emissor": "terry",
-        "mensagem": "teste"
-    },
-    {
-        "id_mensagem": 28,
-        "nome_emissor": "teste",
-        "mensagem": "oi"
-    },
-    {
-        "id_mensagem": 29,
-        "nome_emissor": "teste",
-        "mensagem": "teste"
+        "nome_emissor": "Kerry Muniz Santos",
+        "mensagem": "Ai calica"
     }
 ]

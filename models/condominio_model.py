@@ -1,6 +1,5 @@
 import json
 
-# Obtém o próximo ID
 def obter_proximo_id():
     file = 'database/condominios.json'
     
@@ -50,7 +49,7 @@ def atualizarCondominio(cond_to_update):
     
     condominios = buscarCondominio()
     for c in condominios:
-        if cond_to_update == c['nome'].upper():
+        if cond_to_update == c['id']:
             c['nome'] = str(input("Novo nome: "))      
             c['qntd_andares'] = str(input("Quantidade de andares: "))          
             c['qntd_apto'] = str(input("Quantidade de apartamentos: "))      
@@ -73,7 +72,7 @@ def deletarCondominio(cond_to_delete):
     # Verifica todos os registros que não batem com o nome e adiciona em uma lista
     condominios = buscarCondominio()
     for c in condominios:
-        if cond_to_delete != c['nome'].upper():
+        if cond_to_delete != c['id']:
             new_list.append(c)
     
     conds = new_list 

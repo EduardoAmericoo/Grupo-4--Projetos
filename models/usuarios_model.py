@@ -48,14 +48,14 @@ def atualizarUsuario(user_to_update):
     
     users = buscarUsuario()
     for c in users:
-        if user_to_update == c['cpf'].upper():
+        if user_to_update == c['id']:
             c['nome'] = str(input("Novo nome: "))
                     
             c['senha'] = str(input("Nova senha: "))
             formatarSenha(c['senha'])
                         
-            c['is_adm'] = str(input("Usuário é adm: [S/N] ")).upper()
-            formatarADM(c['is_adm'])
+            is_adm = str(input("Usuário é adm: [S/N] ")).upper()
+            c['is_adm'] = formatarADM(is_adm)
                        
             c['email'] = str(input("Novo email: "))      
             c['telefone'] = str(input("Novo seu telefone: "))
@@ -65,7 +65,7 @@ def atualizarUsuario(user_to_update):
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(users, indent=4))
         
-                user_updated = True
+            user_updated = True
             break
     
     return user_updated
@@ -77,7 +77,7 @@ def atualizarUsuarioMorador(user_to_update):
     
     users = buscarUsuario()
     for c in users:
-        if user_to_update == c['cpf'].upper():
+        if user_to_update == c['id']:
             c['nome'] = str(input("Novo nome: "))
                     
             c['senha'] = str(input("Nova senha: "))
@@ -104,7 +104,7 @@ def deletarUsuario(user_to_delete):
     # Verifica todos os registros que não batem com o nome e adiciona em uma lista
     users = buscarUsuario()
     for c in users:
-        if user_to_delete != c['nome'].upper():
+        if user_to_delete != c['id']:
             new_list.append(c)
     
     users = new_list 
@@ -168,10 +168,12 @@ def formatarADM(is_adm):
         
         is_adm = str(input("Administrador? [S/N]: ")).upper()
                     
-        if is_adm == "S":
-            is_adm = True
-        else:
-            is_adm = False
+    if is_adm == "S":
+        is_adm = True
+    else:
+        is_adm = False
+    
+    return is_adm
 
 def formatarNome(nome):
     while nome == "":

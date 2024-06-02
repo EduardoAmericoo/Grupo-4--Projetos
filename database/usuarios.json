@@ -3,180 +3,20 @@
         "id": 1,
         "is_adm": true,
         "nome": "Terry Damasio Santos",
-        "cpf": "12345678910",
-        "senha": "123",
-        "email": "terry@gmail.com",
+        "cpf": "70363713409",
+        "senha": "12345",
+        "email": "terrydamasio610@gmail.com",
         "telefone": "81989189090",
         "apartamento": "401"
     },
     {
-        "id": 3,
+        "id": 2,
         "is_adm": false,
-        "nome": "",
-        "cpf": "122222",
-        "senha": "",
-        "email": "",
-        "telefone": "",
-        "apartamento": ""
-    },
-    {
-        "id": 4,
-        "is_adm": "N",
-        "nome": "Cleiton",
-        "cpf": "2312312312",
-        "senha": "123456",
-        "email": "cleiton@gmail.com",
-        "telefone": "81976564322",
-        "apartamento": "124"
-    },
-    {
-        "id": 5,
-        "is_adm": true,
-        "nome": "Nogueira",
-        "cpf": "22222222222",
-        "senha": "123",
-        "email": "nogueira@gmail.com",
-        "telefone": "33333333333",
-        "apartamento": "222"
-    },
-    {
-        "id": 6,
-        "is_adm": true,
-        "nome": "Eduardo Am\u00c3\u00a9rico",
-        "cpf": "22222222222",
-        "senha": "123",
-        "email": "eduardo@gmail.com",
-        "telefone": "22222222222",
-        "apartamento": "122"
-    },
-    {
-        "id": 7,
-        "is_adm": true,
-        "nome": "terry",
-        "cpf": "70363713408",
-        "senha": "123",
-        "email": "terry@gmail.com",
-        "telefone": "1323",
-        "apartamento": "1222"
-    },
-    {
-        "id": 8,
-        "is_adm": "N",
-        "nome": "Jubileu",
-        "cpf": "11111111111",
-        "senha": "123456",
-        "email": "jubileu@gmail.com",
-        "telefone": "81987891234",
-        "apartamento": "456"
-    },
-    {
-        "id": 9,
-        "is_adm": true,
-        "nome": "Terry",
-        "cpf": "s",
-        "senha": "",
-        "email": "asd",
-        "telefone": "asd",
-        "apartamento": "asd"
-    },
-    {
-        "id": 10,
-        "is_adm": true,
-        "nome": "terry",
-        "cpf": "22222222222",
-        "senha": "123",
-        "email": "terry@gmail.com",
-        "telefone": "123",
-        "apartamento": "123"
-    },
-    {
-        "id": 11,
-        "is_adm": true,
-        "nome": "Terry Damasio ",
-        "cpf": "12345678911",
-        "senha": "12345",
-        "email": "terrydamasio@gmail.com",
-        "telefone": "12345678910",
-        "apartamento": "122"
-    },
-    {
-        "id": 12,
-        "is_adm": true,
-        "nome": "Terry ",
-        "cpf": "70363713409",
-        "senha": "1234",
-        "email": "terrydamasio610@gmail.com",
-        "telefone": "81989189090",
-        "apartamento": "123"
-    },
-    {
-        "id": 13,
-        "is_adm": true,
-        "nome": "Aeda 1",
-        "cpf": "12345678912",
-        "senha": "12345678",
-        "email": "aeda1@gmail.com",
-        "telefone": "1234444444",
-        "apartamento": "123"
-    },
-    {
-        "id": 14,
-        "is_adm": "N",
-        "nome": "Rafael Varela",
-        "cpf": "12345678912",
-        "senha": "12345",
-        "email": "rafael@gmail.com",
-        "telefone": "123222222",
-        "apartamento": "123"
-    },
-    {
-        "id": 15,
-        "is_adm": "N",
-        "nome": "Rafael",
-        "cpf": "12345678920",
-        "senha": "12345",
-        "email": "rafael@gmail.com",
-        "telefone": "1233333333",
-        "apartamento": "123"
-    },
-    {
-        "id": 16,
-        "is_adm": "N",
-        "nome": "Lucas",
+        "nome": "Kerry Muniz",
         "cpf": "12345678910",
         "senha": "12345",
-        "email": "lucas@gmail.com",
-        "telefone": "1233333333",
-        "apartamento": "123"
-    },
-    {
-        "id": 17,
-        "is_adm": "N",
-        "nome": "heitor",
-        "cpf": "12345678999",
-        "senha": "123333",
-        "email": "123121312",
-        "telefone": "123123",
-        "apartamento": "12313"
-    },
-    {
-        "id": 18,
-        "is_adm": "N",
-        "nome": "Andreia Muniz",
-        "cpf": "12345678988",
-        "senha": "12345",
-        "email": "123456",
-        "telefone": "123",
-        "apartamento": "123"
-    },
-    {
-        "id": 19,
-        "is_adm": true,
-        "nome": "1",
-        "cpf": "34",
-        "senha": "123456",
-        "email": "pqwe@gmail.com",
-        "telefone": "81956437253",
-        "apartamento": "453"
+        "email": "kerry877@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "301"
     }
 ]
