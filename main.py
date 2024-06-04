@@ -1,4 +1,3 @@
-# Implementar módulos e tratamento de erros.
 import os
 import time
 import models.usuarios_model as usuario
@@ -45,7 +44,6 @@ def choiceLogin():
                 senha = str(input("Senha: "))
                 print("="*21)
                 
-                # autentica o usuário 
                 usuario_autenticado = usuario.autenticar_usuario(cpf, senha)
                 
                 if usuario_autenticado == False:
@@ -56,7 +54,6 @@ def choiceLogin():
                 else:
                     break
             
-            # Verifica se o usuário é um morador ou adm
             if usuario_autenticado:
                 os.system('cls')
                 msg = "Usuário autenticado com sucesso!"
@@ -67,11 +64,9 @@ def choiceLogin():
                 is_adm = usuario.is_adm
             
                 if is_adm is False:
-                    # Menu morador
                     menu_morador.main(cpf)   
                 
-                elif is_adm is True:    
-                    # Menu ADM
+                elif is_adm is True:
                     menu_adm.main(cpf)
 
         

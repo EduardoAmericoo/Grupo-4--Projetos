@@ -1,18 +1,1 @@
-[
-    {
-        "id": 1,
-        "usuario_reservou": "Terry Damasio Santos",
-        "area": "Piscina",
-        "data": "20/06/2024",
-        "horario_inicio": "09:00",
-        "horario_fim": "11:00"
-    },
-    {
-        "id": 2,
-        "usuario_reservou": "Kerry Muniz Santos",
-        "area": "Churrasqueira",
-        "data": "20/11/2024",
-        "horario_inicio": "10:00",
-        "horario_fim": "15:00"
-    }
-]
+[]

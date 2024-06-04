@@ -33,7 +33,6 @@ def opcoes_morador():
     
     match(opc):
     
-        # EXIBIR USUÁRIO E ATUALIZAR
         case '1':
             os.system('cls')
 
@@ -77,8 +76,7 @@ def opcoes_morador():
                         time.sleep(2)
                         opcoes_morador()
                         break
-       
-        # RESERVA FAZER
+        
         case '2':
             menuGerenciarReservas()
             opcao = str(input("Digite a opção: "))
@@ -86,7 +84,7 @@ def opcoes_morador():
             areas_comuns = ["Piscina", "Quadra", "Churrasqueira", "Salão de Festas"]
             
             match(opcao):
-                case '1': # Fazer reserva
+                case '1':
                     while True:
                         os.system('cls')
                         print("Áreas Comuns Disponíveis para Reserva: ")
@@ -138,7 +136,7 @@ def opcoes_morador():
                                 opcoes_morador()
                                 break                         
 
-                case '2': # Listar reservas
+                case '2':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -165,7 +163,7 @@ def opcoes_morador():
                             opcoes_morador()
                             break
                 
-                case '3': # alternar reserva
+                case '3':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -197,7 +195,7 @@ def opcoes_morador():
                             m.formatMensagemError(msg)
                             time.sleep(2)
                 
-                case '4': # Cancelar reservas
+                case '4':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -232,18 +230,17 @@ def opcoes_morador():
                             opcoes_morador()
                             break
 
-                case '0': # Voltando
+                case '0':
                     time.sleep(1)
                     opcoes_morador()
                 
-                case __: # Opcão incorreta
+                case __:
                     os.system('cls')
                     msg = "Opção inválida!"
                     m.formatMensagemError(msg)
                     time.sleep(2)
                     opcoes_morador()
 
-        # CHAT
         case '3':
             while True: 
                 os.system('cls')
@@ -267,13 +264,11 @@ def opcoes_morador():
                 
                 chat.cadastrarMensagem(chat.obter_proximo_id(), nome_login, mensagem)
 
-        #SAIR
         case '0':
             print("Saindo...")
             time.sleep(2) 
             exit()
 
-        #OPÇÃO INVÁLIDA
         case __:
             msg = 'Opção inválida!'
             m.formatMensagemError(msg)

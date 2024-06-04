@@ -10,11 +10,9 @@ def obter_proximo_id():
         ids = [int(row['id']) for row in data]
         return max(ids) + 1 if ids else 1
 
-# Cadastrar Condomínio
 def cadastrarCondominio(id, nome_cond, endereco, cep, qntd_andares, qntd_apto):
     file = 'database/condominios.json'
     
-    # cria objeto para escrever
     cond = {
         "id": id,
         "nome": nome_cond,
@@ -25,14 +23,11 @@ def cadastrarCondominio(id, nome_cond, endereco, cep, qntd_andares, qntd_apto):
     }
     
     condominio_cadastrado = False
-    # abre o arquivo e carrega o conteúdo
     with open(file, 'r', encoding='utf8') as arquivo:
         condominios = json.load(arquivo)
     
-    # adiciona o novo cadastro na lista    
     condominios.append(cond)
     
-    # escrever em arquivos json
     with open(file, 'w', encoding='utf8') as arquivo:
         arquivo.write(json.dumps(condominios, indent=4))
         
@@ -40,21 +35,17 @@ def cadastrarCondominio(id, nome_cond, endereco, cep, qntd_andares, qntd_apto):
     
     return condominio_cadastrado
 
-# Atualizar Condomínio
 def atualizarCondominio(cond_to_update):
     file = 'database/condominios.json'
     cond_updated = False
-    
-    # listar condomínios e dados existentes 
-    
+
     condominios = buscarCondominio()
     for c in condominios:
         if cond_to_update == c['id']:
             c['nome'] = str(input("Novo nome: "))      
             c['qntd_andares'] = str(input("Quantidade de andares: "))          
             c['qntd_apto'] = str(input("Quantidade de apartamentos: "))      
-        
-            # escrever em arquivos json
+
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(condominios, indent=4))
         
@@ -63,20 +54,17 @@ def atualizarCondominio(cond_to_update):
     
     return cond_updated
     
-# Deletar Condomínio
 def deletarCondominio(cond_to_delete):
     file = 'database/condominios.json'
     cond_deleted = False
     new_list = []
 
-    # Verifica todos os registros que não batem com o nome e adiciona em uma lista
     condominios = buscarCondominio()
     for c in condominios:
         if cond_to_delete != c['id']:
             new_list.append(c)
     
-    conds = new_list 
-    # escrever em arquivos json
+    conds = new_list
     with open(file, 'w', encoding='utf8') as arquivo:
         arquivo.write(json.dumps(conds, indent=4))
         
@@ -84,7 +72,6 @@ def deletarCondominio(cond_to_delete):
     
     return cond_deleted
 
-# Buscar Condomínio
 def buscarCondominio():
     file = 'database/condominios.json'
     
@@ -94,7 +81,6 @@ def buscarCondominio():
             
     return data
 
-# FORMATAÇÕES DE CEP 
 def formatarCEP(cep):
     cep_cadastrado = False
     condominios = buscarCondominio()

@@ -4,16 +4,15 @@ def obter_proximo_id():
     file = 'database/usuarios.json'
     
     with open(file, mode='r') as arquivo:
-        read = arquivo.read() # ler os dados como texto
-        data = json.loads(read) # carregar os dados no formato json
+        read = arquivo.read()
+        data = json.loads(read)
         
         ids = [int(row['id']) for row in data]
         return max(ids) + 1 if ids else 1
 
 def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento):
     file = 'database/usuarios.json'
-    
-    # cria objeto para escrever
+
     user = {
         "id": id,
         "is_adm": is_adm,
@@ -26,14 +25,11 @@ def cadastrarUsuario(id, is_adm, nome, cpf, senha, email, telefone, apartamento)
     }
     
     usuario_cadastrado = False
-    # abre o arquivo e carrega o conteúdo
     with open(file, 'r', encoding='utf8') as arquivo:
         usuarios = json.load(arquivo)
     
-    # adiciona o novo usuário na lista    
     usuarios.append(user)
     
-    # escrever em arquivos json
     with open(file, 'w', encoding='utf8') as arquivo:
         arquivo.write(json.dumps(usuarios, indent=4))
         
@@ -60,8 +56,7 @@ def atualizarUsuario(user_to_update):
             c['email'] = str(input("Novo email: "))      
             c['telefone'] = str(input("Novo seu telefone: "))
             c['apartamento'] = str(input("Novo seu apartamento: "))
-        
-            # escrever em arquivos json
+
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(users, indent=4))
         
@@ -86,8 +81,7 @@ def atualizarUsuarioMorador(user_to_update):
             c['email'] = str(input("Novo email: "))      
             c['telefone'] = str(input("Novo seu telefone: "))
             c['apartamento'] = str(input("Novo seu apartamento: "))
-        
-            # escrever em arquivos json
+
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(users, indent=4))
         
@@ -101,14 +95,12 @@ def deletarUsuario(user_to_delete):
     user_deleted = False
     new_list = []
 
-    # Verifica todos os registros que não batem com o nome e adiciona em uma lista
     users = buscarUsuario()
     for c in users:
         if user_to_delete != c['id']:
             new_list.append(c)
     
-    users = new_list 
-    # escrever em arquivos json
+    users = new_list
     with open(file, 'w', encoding='utf8') as arquivo:
         arquivo.write(json.dumps(users, indent=4))
         
@@ -120,8 +112,8 @@ def buscarUsuario():
     file = 'database/usuarios.json'
     
     with open(file, 'r') as usuario:
-        read = usuario.read() # ler os dados como texto
-        data = json.loads(read) # carregar os dados no formato json
+        read = usuario.read()
+        data = json.loads(read)
             
     return data
 

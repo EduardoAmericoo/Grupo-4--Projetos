@@ -42,7 +42,6 @@ def atualizarMensagem(msg_to_update):
         if msg_to_update == c['mensagem'].upper():
             c['mensagem'] = str(input("Mensagem: "))         
         
-            # escrever em arquivos json
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(mensagem, indent=4))
         

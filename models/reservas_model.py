@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-import time 
+import time
 import os
 
 def obter_proximo_id():

@@ -58,13 +58,11 @@ def choiceAdm():
     opc = str(input("Digite a opção: "))
     match(opc):
         
-        # GERENCIAR USUÁRIOS
         case "1":  
             menuGerenciarUsuario()
             opcao = str(input("Digite uma opção: "))
             
             match(opcao):
-                # cadastrar usuário
                 case "1":
                     os.system('cls')
                     print("Preencha as informações requeridas, acerca do usuário:")
@@ -100,8 +98,7 @@ def choiceAdm():
                     
                     time.sleep(2)
                     choiceAdm()
-                                 
-                # listar usuário
+                
                 case "2":
                     while True:
                         os.system('cls')
@@ -141,8 +138,7 @@ def choiceAdm():
                             print(msg_alerta)
 
                         opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
-                            
-                        # NÃO TA PASSANDO NA VALIDAÇÃO
+                        
                         while opcao not in "SN":
                             print("Opção inválida! Tente novamente.")
                                 
@@ -153,8 +149,7 @@ def choiceAdm():
                             time.sleep(1)
                             choiceAdm()
                             break
-                            
-                # atualizar usuário    
+                
                 case "3":
                     while True:
                         os.system('cls')
@@ -188,8 +183,7 @@ def choiceAdm():
                             msg = f"Alerta: Usuário {user_to_update} não existe. Tente novamente ou cadastre esse usuário."
                             m.formatMensagemError(msg)
                             time.sleep(2) 
-                    
-                # deletar usuário
+                
                 case "4": 
                     while True:
                         os.system('cls')
@@ -208,7 +202,6 @@ def choiceAdm():
                             choiceAdm()
                             break
                         
-                        # verifica se usuario existe
                         user_deleted = usuario.deletarUsuario(int(user_to_delete))
                         
                         if user_deleted:
@@ -225,12 +218,10 @@ def choiceAdm():
                             m.formatMensagemError(msg)
                             time.sleep(2) 
                 
-                # voltar
                 case "0":
                     time.sleep(1)
                     choiceAdm()
                 
-                # opcão incorreta
                 case __:
                     os.system('cls')
                     msg = 'Opção inválida! Por favor, tente novamente.'
@@ -238,13 +229,12 @@ def choiceAdm():
                     time.sleep(1)
                     choiceAdm()
         
-        # GERENCIAR CONDOMÍNIOS
         case "2": 
             menuGerenciarCondominio()
             opcao = str(input("Digite uma opção: "))
             
             match(opcao):
-                # cadastrar condomínio
+
                 case "1":
                     os.system('cls')
                     print("Preencha as informações requeridas, acerca do condomínio:")
@@ -273,8 +263,7 @@ def choiceAdm():
 
                     time.sleep(2)
                     choiceAdm()
-                        
-                # listar condomínios
+                
                 case "2":
                     while True:
                         os.system('cls')
@@ -313,8 +302,7 @@ def choiceAdm():
                             print(msg_alerta)
 
                         opcao = str(input("Deseja realizar outra pesquisa? [S/N] ")).upper()
-                            
-                        # NÃO TA PASSANDO NA VALIDAÇÃO
+                        
                         while opcao not in "SN":
                             print("Opção inválida! Tente novamente.")
                                 
@@ -326,7 +314,6 @@ def choiceAdm():
                             choiceAdm()
                             break
                 
-                # atualizar condomínio    
                 case "3":
                     while True:
                         os.system('cls')
@@ -360,8 +347,7 @@ def choiceAdm():
                             msg = f"Alerta: Condomínio {cond_to_update} não existe. Tente novamente ou cadastre esse condomínio."
                             m.formatMensagemError(msg)
                             time.sleep(2) 
-                    
-                # deletar condomínio
+                
                 case "4": 
                     os.system('cls')
                     condominios = condominio.buscarCondominio()
@@ -380,7 +366,6 @@ def choiceAdm():
                             choiceAdm()
                             break
                         
-                        # verifica se condomínio existe
                         cond_deleted = condominio.deletarCondominio(int(cond_to_delete))
                         
                         if cond_deleted:
@@ -397,20 +382,17 @@ def choiceAdm():
                             m.formatMensagemError(msg)
                             time.sleep(2) 
                 
-                # voltar
                 case "0":
                     time.sleep(1)
                     choiceAdm()
-                    
-                # opção incorreta 
+                
                 case __:
                     os.system('cls')
                     msg = "Opção inválida!"
                     m.formatMensagemError(msg)
                     time.sleep(2)
                     choiceAdm()
-                        
-        # GERENCIAR RESERVAS
+        
         case "3":     
             menuGerenciarReservas()
             opcao = str(input("Digite a opção: "))
@@ -418,7 +400,7 @@ def choiceAdm():
             areas_comuns = ["Piscina", "Quadra", "Churrasqueira", "Salão de Festas"]
             
             match(opcao):
-                case '1': # Fazer reserva
+                case '1':
                     while True:
                         os.system('cls')
                         print("Áreas Comuns Disponíveis para Reserva: ")
@@ -470,7 +452,7 @@ def choiceAdm():
                                 choiceAdm()
                                 break                         
 
-                case '2': # Listar reservas
+                case '2':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -497,7 +479,7 @@ def choiceAdm():
                             choiceAdm()
                             break
                 
-                case '3': # alternar reserva
+                case '3':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -529,7 +511,7 @@ def choiceAdm():
                             m.formatMensagemError(msg)
                             time.sleep(2)
                 
-                case '4': # Cancelar reservas
+                case '4':
                     while True:
                         os.system('cls')
                         reservas.listarReservas()
@@ -564,18 +546,17 @@ def choiceAdm():
                             choiceAdm()
                             break
 
-                case '0': # Voltando
+                case '0':
                     time.sleep(1)
                     choiceAdm()
                 
-                case __: # Opcão incorreta
+                case __:
                     os.system('cls')
                     msg = "Opção inválida!"
                     m.formatMensagemError(msg)
                     time.sleep(2)
                     choiceAdm()
         
-        # CHAT
         case "4":  
             while True: 
                 os.system('cls')
@@ -598,14 +579,12 @@ def choiceAdm():
                     break
                 
                 chat.cadastrarMensagem(chat.obter_proximo_id(), nome_login, mensagem)
-            
-        # SAIR
+        
         case "0":  
             print("Saindo...")
             time.sleep(2)
             exit()
-            
-        # OPCÃO INVÁLIDA
+        
         case __:
             os.system('cls')
             msg = "Opção inválida!"
@@ -627,4 +606,3 @@ def main(cpf):
     apartamento_login = usuario_logado['apartamento']
     
     choiceAdm()
-    
