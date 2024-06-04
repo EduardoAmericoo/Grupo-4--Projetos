@@ -99,7 +99,7 @@ def choiceLogin():
             usuario_cadastrado = usuario.cadastrarUsuario(usuario.obter_proximo_id(), is_adm, nome, cpf, senha, email, telefone, apartamento)
             
             if usuario_cadastrado:
-                print(f"Usuário {nome.upper()} cadastrado com sucesso!")
+                print(f"\033[1;32mUsuário {nome.upper()} cadastrado com sucesso!\033m")
             
             time.sleep(2)
             main()
@@ -109,7 +109,7 @@ def choiceLogin():
             time.sleep(2)     
         
         case __:
-            print("Opção inválida! Tente novamente.")
+            print("\033[1;31mOpção inválida! Tente novamente.\033[1;31m")
             time.sleep(2)
             main() 
 

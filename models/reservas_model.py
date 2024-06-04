@@ -9,7 +9,7 @@ def obter_proximo_id():
     with open(file, mode='r') as arquivo:
         read = arquivo.read()
         data = json.loads(read)
-        
+
         ids = [int(row['id']) for row in data]
         return max(ids) + 1 if ids else 1
 

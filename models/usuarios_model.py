@@ -170,8 +170,10 @@ def formatarADM(is_adm):
 def formatarNome(nome):
     while nome == "":
         print("Campo obrigatório!")
-        
-        nome = str(input('Nome: '))
+
+        break
+
+    nome = str(input('Nome: '))
 
 def formatarCPF(cpf):
     cpf_cadastrado = False
@@ -180,7 +182,7 @@ def formatarCPF(cpf):
     for c in users:
         if cpf == c['cpf']:
             cpf_cadastrado = True
-        break
+            break
     
     while len(cpf) != 11 or not cpf.isnumeric() or cpf_cadastrado:
         if len(cpf) != 11: 
@@ -189,30 +191,36 @@ def formatarCPF(cpf):
             print("Campo deve conter apenas dígitos numéricos.")
         elif cpf_cadastrado:
             print(f"O CPF '{cpf}' já está cadastrado.")
-
-        cpf = str(input("CPF: "))
+        
+        break
+    
+    cpf = str(input("CPF: "))
 
 def formatarSenha(senha):
     while len(senha) < 5:
         if senha == "" or len(senha) < 5:
             print("Este campo é obrigatório e deve conter no mínimo 5 caracteres!")
+        break
 
-        senha = str(input("Digite seu senha: "))
+    senha = str(input("Digite seu senha: ")) 
     
 def formatarEmail(email):
     while email == "":
         print("Campo obrigatório!")
+        break    
         
-        email = str(input('E-mail: '))
+    email = str(input('E-mail: '))
 
 def formatarTelefone(telefone):
     while telefone == "":
         print("Campo obrigatório!")
-        
-        telefone = str(input('Telefone: '))
+        break    
+    
+    telefone = str(input('Telefone: '))
 
 def formatarApartamento(apartamento):
     while apartamento == "":
         print("Campo obrigatório!")
-        
-        apartamento = str(input('Apartamento: '))
+        break
+
+    apartamento = str(input('Apartamento: '))

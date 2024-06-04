@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "id": 1,
+        "is_adm": true,
+        "nome": "Terry Damasio Santos ",
+        "cpf": "12345678910",
+        "senha": "12345",
+        "email": "terrydamasio610@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "401"
+    },
+    {
+        "id": 2,
+        "is_adm": "N",
+        "nome": "Kerry",
+        "cpf": "12345678910",
+        "senha": "12345",
+        "email": "kerry@gmail.com",
+        "telefone": "81989189090",
+        "apartamento": "101"
+    }
+]
