@@ -11,12 +11,22 @@
     },
     {
         "id": 2,
-        "is_adm": "N",
-        "nome": "Kerry",
-        "cpf": "12345678910",
+        "is_adm": true,
+        "nome": "terry",
+        "cpf": "12345678911",
+        "senha": "123",
+        "email": "terrydamasio@gmail.com",
+        "telefone": "81918",
+        "apartamento": "123"
+    },
+    {
+        "id": 3,
+        "is_adm": true,
+        "nome": "terry",
+        "cpf": "12345678911",
         "senha": "12345",
-        "email": "kerry@gmail.com",
+        "email": "terrydamasio@gmail.com",
         "telefone": "81989189090",
-        "apartamento": "101"
+        "apartamento": "123"
     }
 ]

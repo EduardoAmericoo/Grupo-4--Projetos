@@ -160,10 +160,12 @@ def formatarADM(is_adm):
         
         is_adm = str(input("Administrador? [S/N]: ")).upper()
                     
-    if is_adm == "S":
-        is_adm = True
-    else:
-        is_adm = False
+        if is_adm == "S":
+            is_adm = True
+            break
+        else:
+            is_adm = False
+            break
     
     return is_adm
 
@@ -171,9 +173,10 @@ def formatarNome(nome):
     while nome == "":
         print("Campo obrigatório!")
 
-        break
-
-    nome = str(input('Nome: '))
+        nome = str(input('Nome: '))
+        
+        if nome != "":
+            break
 
 def formatarCPF(cpf):
     cpf_cadastrado = False
@@ -191,36 +194,45 @@ def formatarCPF(cpf):
             print("Campo deve conter apenas dígitos numéricos.")
         elif cpf_cadastrado:
             print(f"O CPF '{cpf}' já está cadastrado.")
-        
-        break
-    
-    cpf = str(input("CPF: "))
+
+        cpf = str(input("CPF: "))
+
+        if len(cpf) == 11 or cpf.isnumeric():      
+            break
 
 def formatarSenha(senha):
     while len(senha) < 5:
         if senha == "" or len(senha) < 5:
             print("Este campo é obrigatório e deve conter no mínimo 5 caracteres!")
-        break
 
-    senha = str(input("Digite seu senha: ")) 
-    
+        senha = str(input("Digite seu senha: ")) 
+
+        if senha != "":
+            break
+
 def formatarEmail(email):
     while email == "":
-        print("Campo obrigatório!")
-        break    
+        print("Campo obrigatório!")    
         
-    email = str(input('E-mail: '))
+        email = str(input('E-mail: '))
+
+        if email != "":
+            break
 
 def formatarTelefone(telefone):
     while telefone == "":
-        print("Campo obrigatório!")
-        break    
+        print("Campo obrigatório!")    
     
-    telefone = str(input('Telefone: '))
+        telefone = str(input('Telefone: '))
+
+        if telefone != "": 
+            break
 
 def formatarApartamento(apartamento):
     while apartamento == "":
         print("Campo obrigatório!")
-        break
 
-    apartamento = str(input('Apartamento: '))
+        apartamento = str(input('Apartamento: '))
+
+        if apartamento != "":
+            break
