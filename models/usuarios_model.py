@@ -54,8 +54,8 @@ def atualizarUsuario(user_to_update):
             c['is_adm'] = formatarADM(is_adm)
                        
             c['email'] = str(input("Novo email: "))      
-            c['telefone'] = str(input("Novo seu telefone: "))
-            c['apartamento'] = str(input("Novo seu apartamento: "))
+            c['telefone'] = str(input("Novo telefone: "))
+            c['apartamento'] = str(input("Novo apartamento: "))
 
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(users, indent=4))
@@ -79,8 +79,8 @@ def atualizarUsuarioMorador(user_to_update):
             formatarSenha(c['senha'])
                        
             c['email'] = str(input("Novo email: "))      
-            c['telefone'] = str(input("Novo seu telefone: "))
-            c['apartamento'] = str(input("Novo seu apartamento: "))
+            c['telefone'] = str(input("Novo telefone: "))
+            c['apartamento'] = str(input("Novo apartamento: "))
 
             with open(file, 'w', encoding='utf8') as arquivo:
                 arquivo.write(json.dumps(users, indent=4))
