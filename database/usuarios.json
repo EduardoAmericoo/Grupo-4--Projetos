@@ -2,31 +2,11 @@
     {
         "id": 1,
         "is_adm": true,
-        "nome": "Terry Damasio Santos ",
+        "nome": "Terry Damasio Santos",
         "cpf": "12345678910",
         "senha": "12345",
         "email": "terrydamasio610@gmail.com",
         "telefone": "81989189090",
         "apartamento": "401"
-    },
-    {
-        "id": 2,
-        "is_adm": true,
-        "nome": "terry",
-        "cpf": "12345678911",
-        "senha": "123",
-        "email": "terrydamasio@gmail.com",
-        "telefone": "81918",
-        "apartamento": "123"
-    },
-    {
-        "id": 3,
-        "is_adm": true,
-        "nome": "terry",
-        "cpf": "12345678911",
-        "senha": "12345",
-        "email": "terrydamasio@gmail.com",
-        "telefone": "81989189090",
-        "apartamento": "123"
     }
 ]
